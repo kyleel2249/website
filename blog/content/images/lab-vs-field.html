@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1200px; height:420px; background:#070D1A; font-family:'Inter',sans-serif; position:relative; overflow:hidden; }
+.mesh { position:absolute; inset:0; background:
+  radial-gradient(circle at 90% 0%, rgba(124,77,255,0.2), transparent 45%),
+  radial-gradient(circle at 5% 100%, rgba(25,211,255,0.16), transparent 45%); }
+.content { position:relative; z-index:2; padding:56px 64px; }
+.eyebrow { font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.12em; text-transform:uppercase; color:#19D3FF; margin-bottom:14px; }
+h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:32px; color:#EAF2FF; margin-bottom:36px; letter-spacing:-0.01em; }
+.compare { display:flex; gap:32px; align-items:stretch; }
+.col { flex:1; background:rgba(17,26,46,0.6); border-radius:18px; padding:30px 28px; display:flex; flex-direction:column; }
+.col.lab { border:1px solid rgba(154,174,198,0.18); }
+.col.field { border:1px solid rgba(25,211,255,0.4); box-shadow:0 0 40px rgba(25,211,255,0.15); }
+.col-title { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:22px; color:#EAF2FF; margin-bottom:6px; }
+.col-tag { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6B7E99; margin-bottom:20px; }
+.col.field .col-tag { color:#19D3FF; }
+.col ul { display:flex; flex-direction:column; gap:14px; list-style:none; }
+.col li { font-size:14.5px; color:#C5D2E3; display:flex; gap:10px; align-items:flex-start; }
+.col li::before { content:'→'; color:#19D3FF; flex-shrink:0; }
+.vs { display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:#6B7E99; padding:0 6px; }
+</style></head>
+<body>
+<div class="mesh"></div>
+<div class="content">
+  <div class="eyebrow">Why scores disagree</div>
+  <h1>Lighthouse (lab) vs. CrUX (field)</h1>
+  <div class="compare">
+    <div class="col lab">
+      <div class="col-title">Lighthouse</div>
+      <div class="col-tag">Lab data</div>
+      <ul>
+        <li>Single simulated page load, one machine</li>
+        <li>Useful for catching regressions pre-launch</li>
+        <li>Not what Google uses to rank pages</li>
+        <li>Can show 100 while CrUX shows a fail</li>
+      </ul>
+    </div>
+    <div class="vs">VS</div>
+    <div class="col field">
+      <div class="col-title">CrUX</div>
+      <div class="col-tag">Field data</div>
+      <ul>
+        <li>Real visitors, real devices, real networks</li>
+        <li>Rolling 28-day average</li>
+        <li>This is the actual ranking signal</li>
+        <li>Fixes take ~4 weeks to fully reflect</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body></html>

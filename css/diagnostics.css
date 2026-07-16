@@ -1,0 +1,244 @@
+/* ==========================================================================
+   BUSINESS DIAGNOSTICS — multi-step assessment + report
+   ========================================================================== */
+
+.diagnostics-cta-card {
+  padding: var(--space-7);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--surface-glass);
+  position: relative;
+  overflow: hidden;
+}
+
+.diagnostics-cta-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad-mesh);
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.diagnostics-cta-card > * { position: relative; z-index: 1; }
+
+.diagnostics-cta-card h2 { font-size: var(--fs-display-md); max-width: 600px; }
+.diagnostics-cta-card p { color: var(--text-secondary); max-width: 520px; }
+
+.diag-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 9, 18, 0.78);
+  backdrop-filter: blur(4px);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+.diag-modal-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+.diag-modal {
+  width: 100%;
+  max-width: 640px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border-glass-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transform: translateY(20px) scale(0.98);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.diag-modal-overlay.is-open .diag-modal { transform: translateY(0) scale(1); }
+
+.diag-modal-header {
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.diag-progress-track {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-raised);
+  overflow: hidden;
+}
+.diag-progress-fill {
+  height: 100%;
+  background: var(--grad-primary);
+  border-radius: var(--radius-pill);
+  transition: width var(--dur-base) var(--ease-out);
+  width: 0%;
+}
+
+.diag-progress-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.diag-modal-close {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+}
+.diag-modal-close:hover { background: rgba(255,255,255,0.06); color: var(--text-primary); }
+.diag-modal-close svg { width: 16px; height: 16px; }
+
+.diag-modal-body {
+  padding: var(--space-6);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.diag-category-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: var(--space-3);
+}
+
+.diag-question h3 {
+  font-size: var(--fs-display-sm);
+  margin-bottom: var(--space-5);
+}
+
+.diag-options { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.diag-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  text-align: left;
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.diag-option:hover { border-color: var(--border-glass-strong); }
+.diag-option.is-selected { border-color: var(--cyan); background: rgba(25,211,255,0.06); }
+
+.diag-option-radio {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border-glass-strong);
+  flex-shrink: 0;
+  position: relative;
+}
+.diag-option.is-selected .diag-option-radio { border-color: var(--cyan); }
+.diag-option.is-selected .diag-option-radio::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+
+.diag-option-text { font-size: var(--fs-body-sm); }
+
+.diag-modal-footer {
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--border-glass);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.diag-intro { text-align: center; padding: var(--space-5) 0; }
+.diag-intro .icon-ring {
+  width: 64px; height: 64px;
+  margin: 0 auto var(--space-5);
+  border-radius: 50%;
+  background: var(--grad-purple);
+  display: flex; align-items: center; justify-content: center;
+}
+.diag-intro .icon-ring svg { width: 30px; height: 30px; }
+.diag-intro h3 { font-size: var(--fs-display-sm); margin-bottom: var(--space-3); }
+.diag-intro p { color: var(--text-secondary); max-width: 440px; margin: 0 auto var(--space-5); }
+.diag-intro-meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-secondary);
+}
+
+/* ---- Lead capture step ---- */
+.diag-lead-form { display: flex; flex-direction: column; gap: var(--space-4); }
+
+/* ---- Report ---- */
+.diag-report-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding-bottom: var(--space-6);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.score-ring-wrap { position: relative; width: 140px; height: 140px; }
+.score-ring-wrap svg { transform: rotate(-90deg); }
+.score-ring-track { stroke: var(--surface-raised); }
+.score-ring-fill { stroke: url(#scoreGradient); stroke-linecap: round; transition: stroke-dashoffset 1s var(--ease-out); }
+.score-ring-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-ring-value .num { font-family: var(--font-display); font-size: 2.25rem; font-weight: 700; }
+.score-ring-value .denom { font-size: var(--fs-caption); color: var(--text-secondary); }
+
+.diag-report-tier {
+  font-family: var(--font-mono);
+  font-size: var(--fs-body-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-glass-strong);
+}
+
+.diag-category-bars { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-6); }
+.diag-category-bar-head { display: flex; justify-content: space-between; font-size: var(--fs-body-sm); margin-bottom: var(--space-2); }
+.diag-category-bar-head .cat-score { font-family: var(--font-mono); color: var(--text-secondary); }
+.diag-category-bar-track { height: 8px; border-radius: var(--radius-pill); background: var(--surface-raised); overflow: hidden; }
+.diag-category-bar-fill { height: 100%; border-radius: var(--radius-pill); }
+
+.diag-recommendations { display: flex; flex-direction: column; gap: var(--space-3); }
+.diag-rec-item {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-glass);
+}
+.diag-rec-item svg { width: 18px; height: 18px; color: var(--cyan); flex-shrink: 0; margin-top: 2px; }
+.diag-rec-item h4 { font-size: 0.9rem; margin-bottom: var(--space-1); }
+.diag-rec-item p { font-size: var(--fs-body-sm); color: var(--text-secondary); }
+
+@media (max-width: 560px) {
+  .diag-modal { max-height: 92vh; }
+  .diag-intro-meta { flex-direction: column; gap: var(--space-2); }
+}

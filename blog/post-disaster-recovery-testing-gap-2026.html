@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<script>document.documentElement.className = 'js';</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Having a Backup Isn't the Same as Having a Disaster Recovery Plan | Cintexa Blog</title>
+<meta name="description" content="Most organizations back up their data. Far fewer ever test whether that backup actually restores. The gap between those two facts is where outages turn into business-ending events.">
+<meta name="keywords" content="disaster recovery plan, RTO vs RPO, recovery time objective, recovery point objective, backup testing, how often test disaster recovery, downtime cost, business continuity plan, failover testing, cloud backup strategy">
+<link rel="canonical" href="https://www.cintexa.com/blog/post-disaster-recovery-testing-gap-2026.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Having a Backup Isn't the Same as Having a Disaster Recovery Plan">
+<meta property="og:description" content="Most organizations back up their data. Far fewer ever test whether that backup actually restores. The gap between those two facts is where outages turn into business-ending events.">
+<meta property="og:url" content="https://www.cintexa.com/blog/post-disaster-recovery-testing-gap-2026.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Having a Backup Isn't the Same as Having a Disaster Recovery Plan">
+<meta name="twitter:description" content="Most organizations back up their data. Far fewer ever test whether that backup actually restores. The gap between those two facts is where outages turn into business-ending events.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#070D1A">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="../css/sections.css">
+<link rel="stylesheet" href="../css/blog.css">
+<link rel="stylesheet" href="../css/support-widget.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Having a Backup Isn't the Same as Having a Disaster Recovery Plan",
+  "description": "Most organizations back up their data. Far fewer ever test whether that backup actually restores. The gap between those two facts is where outages turn into business-ending events.",
+  "datePublished": "2026-06-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Cintexa"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cintexa"
+  },
+  "mainEntityOfPage": "https://www.cintexa.com/blog/post-disaster-recovery-testing-gap-2026.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's the difference between RTO and RPO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RTO (Recovery Time Objective) measures how long a system can be down before the impact becomes unacceptable — it answers \"how fast can we recover?\" RPO (Recovery Point Objective) measures how much data loss is tolerable, measured backward in time from the failure to your last good backup — it answers \"how much data can we afford to lose?\" A system can meet its RTO by restoring quickly while still failing its RPO if the data restored is hours or days old."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I test my disaster recovery plan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Guidance varies by organization size and complexity, but a common baseline is at least once a year for smaller organizations and quarterly for larger ones with more complex infrastructure, with additional tests after any major system or infrastructure change. The more important point than frequency is realism: a useful test actually restores from backup into an isolated environment and times the result, rather than just confirming a backup job completed without errors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is having backups the same as having a disaster recovery plan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A backup is a copy of your data; a disaster recovery plan is the broader, tested process for actually restoring systems, applications, and operations within an acceptable time frame after a disruption. A pile of successful backup jobs can still fail a business if nobody has verified that the data restores cleanly, that the recovery steps are documented, or that the restored systems come back online in the right order."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a disaster recovery test actually involve?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At minimum, it means periodically restoring from backup into an isolated environment and confirming the data is complete and usable, not just confirming the backup job finished. A more thorough test, sometimes called a failover test, also verifies that redundant or standby infrastructure actually takes over successfully when the primary system is deliberately taken offline, rather than assuming the redundancy works because it's never been tried."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does downtime actually cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Industry research converges on a meaningful order of magnitude rather than one precise number: PagerDuty's 2024 Customer Incidents Survey found a median cost of roughly $4,537 per minute of downtime, and New Relic's 2025 Observability Report found high-impact outages carrying a median cost of about $2 million per hour. The exact figure depends heavily on company size and how customer-facing the affected system is, but at any meaningful scale, an hour of downtime is a significant and measurable cost, not a rounding error."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header is-scrolled" id="site-header">
+  <div class="container nav-row">
+    <a href="../" class="brand" aria-label="Cintexa home">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="5" fill="#19D3FF"/><circle cx="6" cy="8" r="3" fill="#1E6BFF"/><circle cx="26" cy="8" r="3" fill="#7C4DFF"/><circle cx="6" cy="24" r="3" fill="#7C4DFF"/><circle cx="26" cy="24" r="3" fill="#1E6BFF"/></svg>
+      Cintexa
+    </a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="../#services">Services</a>
+      <a href="../#ecosystem">Platform</a>
+      <a href="../#developer-portal">Developers</a>
+      <a href="../#case-studies">Case Studies</a>
+      <a href="./" aria-current="page">Blog</a>
+      <a href="../#pricing">Pricing</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="../#diagnostics" class="btn btn-primary btn-sm">Free Diagnostics</a>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="section" style="padding-top: calc(var(--space-10) + 2rem);">
+    <div class="container">
+      <header class="post-header">
+        <span class="blog-card-cat">Cloud Architecture</span>
+        <h1>Having a Backup Isn't the Same as Having a Disaster Recovery Plan</h1>
+        <p class="post-dek">Most organizations back up their data. Far fewer ever test whether that backup actually restores. The gap between those two facts is where outages turn into business-ending events.</p>
+        <div class="post-byline">
+          <span class="avatar-dot" aria-hidden="true"></span>
+          <span>Cintexa Team · 2026-06-18 · 8 min read</span>
+        </div>
+      </header>
+
+      <div class="post-body">
+<p>Ask most technical teams whether they have backups, and the answer is almost always yes. Ask whether they've actually restored from those backups recently, under realistic conditions, and the answer changes. That gap — between having a backup and having a tested, working recovery process — is the single most consistent finding across recent disaster recovery research, and it's the part a diagnostics checklist tends to miss because "do you have backups" is the wrong question.</p>
+
+<h2>The two numbers every recovery plan actually needs</h2>
+<p>Before the testing gap makes sense, it helps to separate two metrics that get used almost interchangeably and shouldn't be: Recovery Time Objective (RTO) and Recovery Point Objective (RPO). RTO answers "how long can we be down?" — it's the maximum acceptable time between an outage starting and normal operations resuming. RPO answers a different question: "how much data can we afford to lose?" — measured as the gap between the moment of failure and your last usable backup. A system backed up every hour has a one-hour RPO no matter how fast or slow the actual restoration process is; RTO and RPO are independent dials, not two names for the same thing.</p>
+<p>The distinction matters operationally. A four-hour RTO with a fifteen-minute RPO means your infrastructure has to restore service within four hours, but it can only afford to lose fifteen minutes of data getting there — which usually demands frequent, automated backups or replication rather than a single nightly job. Not every system needs the same targets: a customer-facing checkout flow might warrant a near-zero RPO, while an internal wiki can often tolerate a full day of data loss without real business harm. Tiering systems by criticality, and setting RTO and RPO independently for each tier, is what turns "we have backups" into an actual, costed recovery plan.</p>
+
+<h2>The numbers behind the gap</h2>
+<p>According to Cockroach Labs' State of Resilience 2025 survey, all organizations conduct some form of resiliency testing, but the specific tests that matter most are the ones most often skipped: 62% of organizations fail to do regular system backups and restoration exercises, and 71% do no failover testing at all to confirm their outage-prevention protocols actually work. Testing exists as a category; it just doesn't reliably include the test that proves recovery is possible.</p>
+<p>The same survey found that organizations experienced an average of 86 outages over a 12-month period, with the average outage lasting 196 minutes — well over three hours — and only 2% of companies able to resolve an unplanned outage in 60 seconds or less.</p>
+
+<h2>What an outage actually costs</h2>
+<p>Cost figures vary by methodology, but the well-sourced ones converge on a consistent order of magnitude. PagerDuty's 2024 Customer Incidents Survey put the true cost of downtime at a median of $4,537 per minute, with the average organization's last major customer-facing outage costing roughly $1.5 million in lost revenue. New Relic's 2025 Observability Report found high-impact outages carrying a median cost of $2 million per hour. Both figures point the same direction: at any meaningful scale, the cost of an hour of downtime is not a rounding error.</p>
+<p>The same PagerDuty research found something more actionable than the raw cost figures: organizations with at least five fully automated incident response processes resolved customer-impacting incidents 78 minutes faster on average than organizations relying on largely manual processes, and experienced 45% lower annual costs from customer-facing outages — $16.8 million annually compared to $30.4 million. Automation isn't just an efficiency nicety here; it's directly tied to how much an outage ends up costing.</p>
+
+<h2>Why the testing gap persists</h2>
+<p>It's not that teams don't know testing matters — 93% of leaders in the Cockroach Labs survey said they're concerned about the financial and organizational impact of outages, and 95% said they're aware of specific vulnerabilities in their own setup. The gap is between awareness and action: only 20% describe their organization as fully prepared for outages, and only 33% have what they'd call an organized response approach. Most teams know exactly where the weak point is and haven't gotten around to testing it.</p>
+<p>Part of this is structural. 41% of organizations still find out about service interruptions through manual checks, customer complaints, or incident tickets — after the fact, rather than through monitoring that catches the problem first. If you don't know about a problem until a customer tells you, testing the recovery process tends to slide down the priority list indefinitely.</p>
+
+<h2>What "tested" actually means in practice</h2>
+<p>A backup that has never been restored is, functionally, an assumption rather than a safeguard. A meaningful test means periodically restoring from backup into an isolated environment and confirming the data is complete, uncorrupted, and usable — not just confirming that a backup job completed without an error message. The distinction matters: a backup process can run successfully and silently produce an unusable file, and the only way to find that out before an actual emergency is to try the restore on a schedule, not just hope the green checkmark means what it implies.</p>
+<p>The same logic applies to failover testing. A redundant setup that has never actually been failed over to is a redundant setup with an unverified assumption sitting in the middle of it. The 71% of organizations skipping this step aren't necessarily wrong about having redundancy — they're wrong about knowing whether it works.</p>
+
+<h2>The practical takeaway</h2>
+<p>If a system's disaster recovery plan exists only as documentation, it isn't a recovery plan yet — it's a draft of one. The fix isn't more backup software; most organizations already have that. It's a recurring calendar item: restore a backup into an isolated environment on a set schedule, time how long it takes, and treat any failure to do so smoothly as the finding it is, not as an inconvenience to route around. The 20% of organizations that describe themselves as fully prepared didn't get there by buying something different — they got there by testing.</p>
+
+      <div class="post-faq">
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-0">
+              <span>What's the difference between RTO and RPO?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-chevron"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-0">
+              <p>RTO (Recovery Time Objective) measures how long a system can be down before the impact becomes unacceptable — it answers &quot;how fast can we recover?&quot; RPO (Recovery Point Objective) measures how much data loss is tolerable, measured backward in time from the failure to your last good backup — it answers &quot;how much data can we afford to lose?&quot; A system can meet its RTO by restoring quickly while still failing its RPO if the data restored is hours or days old.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1">
+              <span>How often should I test my disaster recovery plan?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-chevron"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-1">
+              <p>Guidance varies by organization size and complexity, but a common baseline is at least once a year for smaller organizations and quarterly for larger ones with more complex infrastructure, with additional tests after any major system or infrastructure change. The more important point than frequency is realism: a useful test actually restores from backup into an isolated environment and times the result, rather than just confirming a backup job completed without errors.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2">
+              <span>Is having backups the same as having a disaster recovery plan?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-chevron"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-2">
+              <p>No. A backup is a copy of your data; a disaster recovery plan is the broader, tested process for actually restoring systems, applications, and operations within an acceptable time frame after a disruption. A pile of successful backup jobs can still fail a business if nobody has verified that the data restores cleanly, that the recovery steps are documented, or that the restored systems come back online in the right order.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3">
+              <span>What does a disaster recovery test actually involve?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-chevron"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-3">
+              <p>At minimum, it means periodically restoring from backup into an isolated environment and confirming the data is complete and usable, not just confirming the backup job finished. A more thorough test, sometimes called a failover test, also verifies that redundant or standby infrastructure actually takes over successfully when the primary system is deliberately taken offline, rather than assuming the redundancy works because it's never been tried.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4">
+              <span>How much does downtime actually cost?</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-chevron"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-4">
+              <p>Industry research converges on a meaningful order of magnitude rather than one precise number: PagerDuty's 2024 Customer Incidents Survey found a median cost of roughly $4,537 per minute of downtime, and New Relic's 2025 Observability Report found high-impact outages carrying a median cost of about $2 million per hour. The exact figure depends heavily on company size and how customer-facing the affected system is, but at any meaningful scale, an hour of downtime is a significant and measurable cost, not a rounding error.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="post-sources">
+        <h2 class="post-sources-heading">Sources</h2>
+        <ol>
+      <li><a href="https://secureframe.com/blog/disaster-recovery-statistics" target="_blank" rel="noopener noreferrer nofollow">Secureframe — comprehensive sourcing of Cockroach Labs' State of Resilience 2025 survey data on backup testing, failover testing, and outage preparedness</a></li>
+      <li><a href="https://www.cockroachlabs.com/guides/the-state-of-resilience-2025/" target="_blank" rel="noopener noreferrer nofollow">Cockroach Labs — The State of Resilience 2025 original survey report</a></li>
+      <li><a href="https://www.pagerduty.com/resources/insights/learn/cost-of-downtime/" target="_blank" rel="noopener noreferrer nofollow">PagerDuty — 2024 Customer Incidents Survey on downtime cost and automated incident response ROI</a></li>
+      <li><a href="https://newrelic.com/resources/report/observability-forecast/2025" target="_blank" rel="noopener noreferrer nofollow">New Relic — Observability Forecast 2025 Report on outage cost and causes</a></li>
+        </ol>
+      </div>
+
+      <div class="post-cta glass">
+        <h3 style="margin-bottom:var(--space-3); font-size:var(--fs-display-sm);">Want this implemented, not just explained?</h3>
+        <p style="color:var(--text-secondary); margin-bottom:var(--space-5);">Cintexa builds exactly the kind of systems this article covers.</p>
+        <a href="../#contact" class="btn btn-primary">Start a conversation</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Cintexa. All rights reserved.</span>
+      <a href="./" style="color:var(--cyan); font-size:var(--fs-body-sm);">← Back to blog</a>
+    </div>
+  </div>
+</footer>
+
+<button class="cs-launcher" id="support-launcher" aria-label="Open chat with Cintexa Support" aria-expanded="false" aria-controls="support-panel">
+  <span class="cs-badge" aria-hidden="true"></span>
+  <img src="../assets/logo/cintexa-logo-widget.png" alt="" width="34" height="34">
+</button>
+
+<section class="cs-panel" id="support-panel" aria-label="Chat with Cintexa Support" role="dialog" aria-modal="false">
+  <div class="cs-header">
+    <div class="cs-avatar">
+      <img src="../assets/logo/cintexa-logo-widget.png" alt="" width="24" height="24">
+      <span class="status-dot" aria-hidden="true"></span>
+    </div>
+    <div class="cs-header-text">
+      <h3>Cintexa Support</h3>
+      <p>Usually replies in seconds</p>
+    </div>
+    <button class="cs-close" id="support-close" aria-label="Close chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div class="cs-messages" id="support-messages" aria-live="polite"></div>
+  <div class="cs-suggestions" id="support-suggestions"></div>
+
+  <form class="cs-input-row" id="support-form">
+    <textarea id="support-input" rows="1" placeholder="Ask Cintexa Support anything..." aria-label="Message to Cintexa Support"></textarea>
+    <button type="submit" class="cs-send" id="support-send" aria-label="Send message">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    </button>
+  </form>
+  <p class="cs-footer-note">Cintexa Support is an automated assistant. Responses may be reviewed for quality.</p>
+</section>
+
+<script src="../js/main.js"></script>
+<script src="../js/faq-accordion.js"></script>
+<script src="../js/support-widget.js"></script>
+</body>
+</html>

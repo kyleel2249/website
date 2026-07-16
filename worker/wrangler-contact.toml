@@ -1,0 +1,15 @@
+name = "cintexa-contact-worker"
+main = "contact-worker.js"
+compatibility_date = "2026-06-01"
+
+# After deploying, set your Resend API key as a secret (never commit it):
+#   wrangler secret put RESEND_API_KEY
+#
+# Then deploy with:
+#   wrangler deploy --config wrangler-contact.toml
+#
+# Update ALLOWED_ORIGINS in contact-worker.js to match your real production domain(s).
+# Update SEND_FROM in contact-worker.js once your sending domain is verified in Resend.
+
+[observability]
+enabled = true

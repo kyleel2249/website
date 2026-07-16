@@ -1,0 +1,26 @@
+name = "cintexa-reviews-worker"
+main = "reviews-worker.js"
+compatibility_date = "2026-06-01"
+
+# SETUP STEPS:
+#
+# 1. Create the KV namespace (run this once):
+#      wrangler kv:namespace create "CINTEXA_REVIEWS"
+#    This prints something like:
+#      { binding = "CINTEXA_REVIEWS", id = "abcd1234..." }
+#    Copy that id into the [[kv_namespaces]] block below, replacing
+#    <YOUR_KV_NAMESPACE_ID>.
+#
+# 2. Deploy:
+#      wrangler deploy --config wrangler-reviews.toml
+#
+# 3. Update REVIEWS_ENDPOINT in /js/reviews.js to your deployed Worker URL.
+#
+# 4. Update ALLOWED_ORIGINS in reviews-worker.js to match your real domain(s).
+
+[[kv_namespaces]]
+binding = "CINTEXA_REVIEWS"
+id = "<YOUR_KV_NAMESPACE_ID>"
+
+[observability]
+enabled = true

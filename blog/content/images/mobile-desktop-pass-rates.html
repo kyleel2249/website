@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1200px; height:560px; background:#070D1A; font-family:'Inter',sans-serif; position:relative; overflow:hidden; }
+.mesh { position:absolute; inset:0; background:
+  radial-gradient(circle at 15% 100%, rgba(124,77,255,0.2), transparent 45%),
+  radial-gradient(circle at 90% 0%, rgba(25,211,255,0.16), transparent 45%); }
+.content { position:relative; z-index:2; padding:56px 64px; }
+.eyebrow { font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.12em; text-transform:uppercase; color:#19D3FF; margin-bottom:14px; }
+h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:32px; color:#EAF2FF; margin-bottom:8px; letter-spacing:-0.01em; }
+.sub { font-size:15px; color:#9AAEC6; margin-bottom:40px; }
+.chart { display:flex; gap:48px; align-items:flex-end; height:280px; padding-left:8px; }
+.bar-group { display:flex; flex-direction:column; align-items:center; gap:14px; flex:1; height:100%; justify-content:flex-end; }
+.bar-pair { display:flex; gap:10px; align-items:flex-end; height:100%; }
+.bar { width:46px; border-radius:8px 8px 0 0; position:relative; display:flex; align-items:flex-start; justify-content:center; padding-top:8px; }
+.bar-val { font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; color:#04101F; }
+.bar-label { font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; color:#EAF2FF; }
+.legend { display:flex; gap:24px; justify-content:center; margin-top:24px; }
+.legend-item { display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:13px; color:#9AAEC6; }
+.legend-dot { width:10px; height:10px; border-radius:3px; }
+</style></head>
+<body>
+<div class="mesh"></div>
+<div class="content">
+  <div class="eyebrow">Field data · Pass rates by metric</div>
+  <h1>Mobile lags most on loading speed</h1>
+  <div class="sub">Illustrative pattern from field-data reporting: mobile lags on speed, desktop lags on stability</div>
+  <div class="chart">
+    <div class="bar-group">
+      <div class="bar-pair">
+        <div class="bar" style="height:62%; background:linear-gradient(180deg,#19D3FF,#3A85FF);"><span class="bar-val">62%</span></div>
+        <div class="bar" style="height:74%; background:rgba(154,174,198,0.3);"><span class="bar-val" style="color:#EAF2FF;">74%</span></div>
+      </div>
+      <div class="bar-label">LCP</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-pair">
+        <div class="bar" style="height:77%; background:linear-gradient(180deg,#19D3FF,#3A85FF);"><span class="bar-val">77%</span></div>
+        <div class="bar" style="height:85%; background:rgba(154,174,198,0.3);"><span class="bar-val" style="color:#EAF2FF;">85%</span></div>
+      </div>
+      <div class="bar-label">INP</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-pair">
+        <div class="bar" style="height:81%; background:linear-gradient(180deg,#19D3FF,#3A85FF);"><span class="bar-val">81%</span></div>
+        <div class="bar" style="height:78%; background:rgba(154,174,198,0.3);"><span class="bar-val" style="color:#EAF2FF;">78%</span></div>
+      </div>
+      <div class="bar-label">CLS</div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:linear-gradient(180deg,#19D3FF,#3A85FF);"></span> Mobile</div>
+    <div class="legend-item"><span class="legend-dot" style="background:rgba(154,174,198,0.5);"></span> Desktop</div>
+  </div>
+</div>
+</body></html>

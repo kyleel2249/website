@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Cintexa Blog</title>
+    <link>https://www.cintexa.com/blog/</link>
+    <description>Web development, cloud architecture, software engineering, and digital systems insights from Cintexa.</description>
+    <language>en-us</language>
+    <item>
+      <title>Your CRM, ERP, and Support Tool Are Lying to Each Other — Here&apos;s the Bill</title>
+      <link>https://www.cintexa.com/blog/post-data-silos-real-cost-2026.html</link>
+      <guid>https://www.cintexa.com/blog/post-data-silos-real-cost-2026.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
+      <description>No one decides to build data silos. They accumulate one reasonable tool purchase at a time, until sales, finance, and support are each working from a different version of the truth.</description>
+      <category>Digital Systems</category>
+    </item>
+    <item>
+      <title>Most Digital Transformation Projects Don&apos;t Fail Because of the Technology</title>
+      <link>https://www.cintexa.com/blog/post-why-digital-transformation-fails-2026.html</link>
+      <guid>https://www.cintexa.com/blog/post-why-digital-transformation-fails-2026.html</guid>
+      <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Roughly 70% of digital transformation initiatives miss their goals. Across every major study on why, the technology itself is rarely the reason — the sequencing of the work usually is.</description>
+      <category>Digital Systems</category>
+    </item>
+    <item>
+      <title>Most API Integration Budgets Are Wrong Before the Project Starts</title>
+      <link>https://www.cintexa.com/blog/post-api-integration-hidden-costs-2026.html</link>
+      <guid>https://www.cintexa.com/blog/post-api-integration-hidden-costs-2026.html</guid>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Quote an API project by counting endpoints and you&apos;ll be wrong by 30-40%. The cost lives in the parts that never make it into the initial scope: documentation, error handling, versioning, and the integration work nobody priced.</description>
+      <category>Software Engineering</category>
+    </item>
+    <item>
+      <title>Technical Debt Isn&apos;t a Code Quality Problem — It&apos;s a Budget Line You Can&apos;t See</title>
+      <link>https://www.cintexa.com/blog/post-technical-debt-real-cost-2026.html</link>
+      <guid>https://www.cintexa.com/blog/post-technical-debt-real-cost-2026.html</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Most leadership teams have never seen &apos;technical debt&apos; on a budget line. That doesn&apos;t mean it isn&apos;t there — it means it&apos;s hiding inside every delayed feature and every estimate that quietly doubled.</description>
+      <category>Software Engineering</category>
+    </item>
+    <item>
+      <title>Having a Backup Isn&apos;t the Same as Having a Disaster Recovery Plan</title>
+      <link>https://www.cintexa.com/blog/post-disaster-recovery-testing-gap-2026.html</link>
+      <guid>https://www.cintexa.com/blog/post-disaster-recovery-testing-gap-2026.html</guid>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Most organizations back up their data. Far fewer ever test whether that backup actually restores. The gap between those two facts is where outages turn into business-ending events.</description>
+      <category>Cloud Architecture</category>
+    </item>
+    <item>
+      <title>Serverless Doesn&apos;t Always Save Money — Here&apos;s When It Actually Does</title>
+      <link>https://www.cintexa.com/blog/post-serverless-cost-reality-2026.html</link>
+      <guid>https://www.cintexa.com/blog/post-serverless-cost-reality-2026.html</guid>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Pay-per-execution sounds like a universal cost win. The real picture has a crossover point: serverless is cheaper below it and more expensive above it, and most teams never check which side they&apos;re on.</description>
+      <category>Cloud Architecture</category>
+    </item>
+    <item>
+      <title>What Edge Caching Actually Buys You (Beyond &apos;It&apos;s Faster&apos;)</title>
+      <link>https://www.cintexa.com/blog/post-edge-caching-architecture-guide-2026.html</link>
+      <guid>https://www.cintexa.com/blog/post-edge-caching-architecture-guide-2026.html</guid>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Edge caching is usually pitched as a speed upgrade. The more useful way to think about it is as an origin-load and reliability strategy — one that happens to make pages faster as a side effect.</description>
+      <category>Web Development</category>
+    </item>
+    <item>
+      <title>Why Core Web Vitals Are a Revenue Problem, Not Just an SEO One</title>
+      <link>https://www.cintexa.com/blog/post-core-web-vitals-conversion-2026.html</link>
+      <guid>https://www.cintexa.com/blog/post-core-web-vitals-conversion-2026.html</guid>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Most teams treat Core Web Vitals as a search-ranking checkbox. The field data tells a different story: loading speed and visual stability are quietly setting a ceiling on how many visitors convert.</description>
+      <category>Web Development</category>
+    </item>
+  </channel>
+</rss>

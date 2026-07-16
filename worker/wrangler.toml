@@ -1,0 +1,14 @@
+name = "cintexa-support-worker"
+main = "support-worker.js"
+compatibility_date = "2026-06-01"
+
+# After deploying, set your Anthropic API key as a secret (never commit it):
+#   wrangler secret put ANTHROPIC_API_KEY
+#
+# Then deploy with:
+#   wrangler deploy
+#
+# Update ALLOWED_ORIGINS in support-worker.js to match your real production domain(s).
+
+[observability]
+enabled = true

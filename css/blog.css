@@ -1,0 +1,221 @@
+/* ==========================================================================
+   BLOG — listing + single post
+   ========================================================================== */
+
+.blog-filters {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-7);
+}
+
+.blog-filter-chip {
+  font-family: var(--font-mono);
+  font-size: var(--fs-body-sm);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-glass-strong);
+  color: var(--text-secondary);
+  transition: border-color var(--dur-fast), color var(--dur-fast), background var(--dur-fast);
+}
+.blog-filter-chip:hover { color: var(--text-primary); }
+.blog-filter-chip.is-active { background: var(--grad-primary); color: #04101F; border-color: transparent; }
+
+.blog-grid { grid-template-columns: repeat(3, 1fr); }
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+}
+.blog-card:hover { transform: translateY(-4px); border-color: var(--border-glass-strong); }
+
+.blog-card-media {
+  height: 160px;
+  background: var(--grad-mesh), var(--surface-raised);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-4);
+}
+
+.blog-card-cat {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: rgba(7,13,26,0.7);
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+}
+
+.blog-card-body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
+.blog-card-body h3 { font-size: 1.1rem; line-height: var(--lh-snug); }
+.blog-card-body p { font-size: var(--fs-body-sm); color: var(--text-secondary); flex: 1; }
+
+.blog-card-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-caption);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-glass);
+}
+
+@media (max-width: 980px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .blog-grid { grid-template-columns: 1fr; } }
+
+/* ---- Single post ---- */
+.post-header { max-width: 760px; margin: 0 auto var(--space-7); text-align: center; }
+.post-header .blog-card-cat { display: inline-block; margin-bottom: var(--space-4); }
+.post-header h1 { font-size: var(--fs-display-lg); margin-bottom: var(--space-4); }
+.post-header .post-dek { color: var(--text-secondary); font-size: var(--fs-body-lg); margin-bottom: var(--space-5); }
+
+.post-byline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  font-size: var(--fs-body-sm);
+  color: var(--text-muted);
+}
+.post-byline .avatar-dot { width: 28px; height: 28px; border-radius: 50%; background: var(--grad-purple); }
+
+.post-body {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.0625rem;
+  line-height: var(--lh-normal);
+  color: var(--text-secondary);
+}
+
+.post-body h2 {
+  font-size: var(--fs-display-sm);
+  color: var(--text-primary);
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-4);
+}
+.post-body h3 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+}
+.post-body p { margin-bottom: var(--space-4); }
+.post-body ul, .post-body ol { margin-bottom: var(--space-4); padding-left: 1.4rem; }
+
+.post-body figure {
+  margin: var(--space-7) 0;
+}
+.post-body figure img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+  display: block;
+}
+.post-body figcaption {
+  font-size: var(--fs-caption);
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+}
+.post-body li { margin-bottom: var(--space-2); }
+.post-body ul li { list-style: disc; }
+.post-body ol li { list-style: decimal; }
+.post-body a { color: var(--cyan); text-decoration: underline; text-decoration-color: rgba(25,211,255,0.3); }
+.post-body a:hover { text-decoration-color: var(--cyan); }
+.post-body strong { color: var(--text-primary); }
+.post-body blockquote {
+  border-left: 3px solid var(--purple);
+  padding-left: var(--space-5);
+  margin: var(--space-6) 0;
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+.post-sources {
+  max-width: 700px;
+  margin: var(--space-8) auto 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-glass);
+}
+.post-sources-heading {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+.post-sources ol { padding-left: 1.2rem; display: flex; flex-direction: column; gap: var(--space-2); }
+.post-sources li { font-size: var(--fs-body-sm); color: var(--text-secondary); }
+.post-sources a { color: var(--cyan); }
+
+.post-cta {
+  max-width: 700px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-6);
+  text-align: center;
+}
+
+/* ---- FAQ accordion ---- */
+.post-faq {
+  max-width: 700px;
+  margin: var(--space-8) auto 0;
+}
+.post-faq h2 {
+  font-size: var(--fs-display-sm);
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.faq-item {
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+.faq-chevron {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.faq-item.is-open .faq-chevron { transform: rotate(180deg); color: var(--cyan); }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--dur-base) var(--ease-out);
+}
+.faq-answer p {
+  padding: 0 var(--space-5) var(--space-4);
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+.faq-item.is-open .faq-answer {
+  max-height: 600px;
+}

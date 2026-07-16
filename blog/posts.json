@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "core-web-vitals-conversion-2026",
+    "title": "Why Core Web Vitals Are a Revenue Problem, Not Just an SEO One",
+    "dek": "Most teams treat Core Web Vitals as a search-ranking checkbox. The field data tells a different story: loading speed and visual stability are quietly setting a ceiling on how many visitors convert.",
+    "category": "Web Development",
+    "date": "2026-06-15",
+    "readMinutes": 8
+  },
+  {
+    "slug": "edge-caching-architecture-guide-2026",
+    "title": "What Edge Caching Actually Buys You (Beyond 'It's Faster')",
+    "dek": "Edge caching is usually pitched as a speed upgrade. The more useful way to think about it is as an origin-load and reliability strategy — one that happens to make pages faster as a side effect.",
+    "category": "Web Development",
+    "date": "2026-06-16",
+    "readMinutes": 7
+  },
+  {
+    "slug": "serverless-cost-reality-2026",
+    "title": "Serverless Doesn't Always Save Money — Here's When It Actually Does",
+    "dek": "Pay-per-execution sounds like a universal cost win. The real picture has a crossover point: serverless is cheaper below it and more expensive above it, and most teams never check which side they're on.",
+    "category": "Cloud Architecture",
+    "date": "2026-06-17",
+    "readMinutes": 7
+  },
+  {
+    "slug": "disaster-recovery-testing-gap-2026",
+    "title": "Having a Backup Isn't the Same as Having a Disaster Recovery Plan",
+    "dek": "Most organizations back up their data. Far fewer ever test whether that backup actually restores. The gap between those two facts is where outages turn into business-ending events.",
+    "category": "Cloud Architecture",
+    "date": "2026-06-18",
+    "readMinutes": 7
+  },
+  {
+    "slug": "technical-debt-real-cost-2026",
+    "title": "Technical Debt Isn't a Code Quality Problem — It's a Budget Line You Can't See",
+    "dek": "Most leadership teams have never seen 'technical debt' on a budget line. That doesn't mean it isn't there — it means it's hiding inside every delayed feature and every estimate that quietly doubled.",
+    "category": "Software Engineering",
+    "date": "2026-06-19",
+    "readMinutes": 7
+  },
+  {
+    "slug": "api-integration-hidden-costs-2026",
+    "title": "Most API Integration Budgets Are Wrong Before the Project Starts",
+    "dek": "Quote an API project by counting endpoints and you'll be wrong by 30-40%. The cost lives in the parts that never make it into the initial scope: documentation, error handling, versioning, and the integration work nobody priced.",
+    "category": "Software Engineering",
+    "date": "2026-06-22",
+    "readMinutes": 7
+  },
+  {
+    "slug": "why-digital-transformation-fails-2026",
+    "title": "Most Digital Transformation Projects Don't Fail Because of the Technology",
+    "dek": "Roughly 70% of digital transformation initiatives miss their goals. Across every major study on why, the technology itself is rarely the reason — the sequencing of the work usually is.",
+    "category": "Digital Systems",
+    "date": "2026-06-23",
+    "readMinutes": 7
+  },
+  {
+    "slug": "data-silos-real-cost-2026",
+    "title": "Your CRM, ERP, and Support Tool Are Lying to Each Other — Here's the Bill",
+    "dek": "No one decides to build data silos. They accumulate one reasonable tool purchase at a time, until sales, finance, and support are each working from a different version of the truth.",
+    "category": "Digital Systems",
+    "date": "2026-06-24",
+    "readMinutes": 7
+  }
+]

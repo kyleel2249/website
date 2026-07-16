@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1200px; height:380px; background:#070D1A; font-family:'Inter',sans-serif; position:relative; overflow:hidden; }
+.mesh { position:absolute; inset:0; background:
+  radial-gradient(circle at 10% 0%, rgba(124,77,255,0.2), transparent 45%),
+  radial-gradient(circle at 95% 100%, rgba(25,211,255,0.16), transparent 45%); }
+.content { position:relative; z-index:2; padding:56px 64px; }
+.eyebrow { font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:0.12em; text-transform:uppercase; color:#19D3FF; margin-bottom:14px; }
+h1 { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:32px; color:#EAF2FF; margin-bottom:40px; letter-spacing:-0.01em; }
+.metrics { display:flex; gap:28px; }
+.metric-card { flex:1; background:rgba(17,26,46,0.6); border:1px solid rgba(154,174,198,0.16); border-radius:18px; padding:28px 24px; }
+.metric-name { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:#EAF2FF; margin-bottom:4px; }
+.metric-full { font-size:13px; color:#9AAEC6; margin-bottom:20px; }
+.metric-bar-track { height:10px; border-radius:99px; background:rgba(255,255,255,0.08); margin-bottom:12px; overflow:hidden; }
+.metric-bar-fill { height:100%; border-radius:99px; }
+.metric-threshold { display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B7E99; }
+.metric-threshold .good { color:#2BD9A0; font-weight:600; }
+</style></head>
+<body>
+<div class="mesh"></div>
+<div class="content">
+  <div class="eyebrow">Core Web Vitals · Pass Thresholds</div>
+  <h1>The three metrics, at a glance</h1>
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="metric-name">LCP</div>
+      <div class="metric-full">Largest Contentful Paint</div>
+      <div class="metric-bar-track"><div class="metric-bar-fill" style="width:70%; background:linear-gradient(90deg,#3A85FF,#19D3FF);"></div></div>
+      <div class="metric-threshold"><span class="good">≤ 2.5s good</span><span>measures load speed</span></div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">INP</div>
+      <div class="metric-full">Interaction to Next Paint</div>
+      <div class="metric-bar-track"><div class="metric-bar-fill" style="width:62%; background:linear-gradient(90deg,#7C4DFF,#19D3FF);"></div></div>
+      <div class="metric-threshold"><span class="good">≤ 200ms good</span><span>measures responsiveness</span></div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">CLS</div>
+      <div class="metric-full">Cumulative Layout Shift</div>
+      <div class="metric-bar-track"><div class="metric-bar-fill" style="width:81%; background:linear-gradient(90deg,#2BD9A0,#19D3FF);"></div></div>
+      <div class="metric-threshold"><span class="good">≤ 0.1 good</span><span>measures visual stability</span></div>
+    </div>
+  </div>
+</div>
+</body></html>
