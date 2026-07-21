@@ -1,13 +1,18 @@
 /* ==========================================================================
    REVIEWS SECTION — fetch, render, interactive star input, submission
-   Calls a Cloudflare Worker (see /worker/reviews-worker.js) backed by KV
-   storage, so reviews are genuinely shared across visitors, not just saved
-   locally in one browser. Update REVIEWS_ENDPOINT below to your deployed
-   Worker URL before going live.
+   Backed by Supabase (Postgres + RLS). Reviews are genuinely shared across
+   visitors via the `reviews` table. The anon key is exposed on window by
+   index.html so this static site (no build step) can authenticate requests.
    ========================================================================== */
 
 (function () {
-  const REVIEWS_ENDPOINT = 'https://reviews.cintexa.workers.dev/reviews'; // <-- replace with your deployed Worker URL
+  const SUPABASE_URL = window.SUPABASE_URL || '';
+  const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || '';
+  const REVIEWS_ENDPOINT = `${SUPABASE_URL}/rest/v1/reviews`;
+  const authHeaders = {
+    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+    'apikey': SUPABASE_ANON_KEY,
+  };
 
   const grid = document.getElementById('reviews-grid');
   const avgEl = document.getElementById('reviews-avg');
@@ -153,26 +158,44 @@
     orgScript.textContent = JSON.stringify(schema, null, 2);
   }
 
-  // ---- Load reviews from the Worker ----
+  // ---- Load reviews from Supabase ----
+  // Supabase REST returns a plain array of rows (snake_case columns), so we
+  // map created_at -> createdAt and compute aggregate stats client-side.
+  function computeStats(rows) {
+    const count = rows.length;
+    const average = count === 0 ? 0 : rows.reduce((sum, r) => sum + r.rating, 0) / count;
+    const distribution = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+    rows.forEach(r => { distribution[r.rating] = (distribution[r.rating] || 0) + 1; });
+    return { count, average: Math.round(average * 10) / 10, distribution };
+  }
+
   async function loadReviews() {
     try {
-      const res = await fetch(REVIEWS_ENDPOINT);
-      if (!res.ok) throw new Error(`Worker responded ${res.status}`);
-      const data = await res.json();
+      const url = `${REVIEWS_ENDPOINT}?approved=eq.true&order=created_at.desc&limit=100`;
+      const res = await fetch(url, { headers: authHeaders });
+      if (!res.ok) throw new Error(`Supabase responded ${res.status}`);
+      const rows = await res.json();
 
-      allReviews = data.reviews || [];
+      allReviews = rows.map(r => ({
+        name: r.name,
+        company: r.company || null,
+        rating: r.rating,
+        text: r.text,
+        createdAt: r.created_at,
+      }));
       shownCount = Math.min(PAGE_SIZE, allReviews.length);
 
-      renderSummary(data.stats || { count: 0, average: 0, distribution: {} });
+      const stats = computeStats(allReviews);
+      renderSummary(stats);
       renderCards();
-      injectSchema(data.stats || { count: 0, average: 0 }, allReviews);
+      injectSchema(stats, allReviews);
     } catch (err) {
       console.error('Reviews load error:', err);
       countEl.textContent = "Reviews aren't connected yet.";
       avgEl.textContent = '—';
       avgStarsEl.innerHTML = starsSvgRow(0, 20);
       barsEl.innerHTML = '';
-      grid.innerHTML = '<div class="reviews-empty glass">Be the first to leave a review once this section is connected — your feedback will show up here for other visitors.</div>';
+      grid.innerHTML = '<div class="reviews-empty glass">Be the first to leave a review — your feedback will show up here for other visitors.</div>';
       loadMoreBtn.style.display = 'none';
     }
   }
@@ -239,19 +262,18 @@
       try {
         const res = await fetch(REVIEWS_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, company, text, rating }),
+          headers: { ...authHeaders, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+          body: JSON.stringify({ name, company, rating, text }),
         });
         const data = await res.json().catch(() => ({}));
 
-        if (!res.ok) throw new Error(data.error || 'Something went wrong.');
-
-        if (data.pendingModeration) {
-          showStatus(`Thanks, ${name.split(' ')[0]} — your review has been submitted and will appear once it's been reviewed.`, 'success');
-        } else {
-          showStatus(`Thanks, ${name.split(' ')[0]} — your review is now live!`, 'success');
-          loadReviews();
+        if (!res.ok) {
+          const message = (Array.isArray(data) && data[0]?.message) || data?.message || data?.error || 'Something went wrong.';
+          throw new Error(message);
         }
+
+        showStatus(`Thanks, ${name.split(' ')[0]} — your review is now live!`, 'success');
+        loadReviews();
         form.reset();
         starInput?.querySelectorAll('button').forEach(b => b.classList.remove('is-active', 'is-hover'));
         ratingValueInput.value = '0';

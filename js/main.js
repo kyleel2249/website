@@ -103,7 +103,7 @@
   // Sends the message to a Cloudflare Worker (see /worker/contact-worker.js), which
   // delivers it as an email to info@cintexa.com via Resend. Update CONTACT_ENDPOINT
   // below to your deployed Worker URL before going live.
-  const CONTACT_ENDPOINT = 'https://contact.cintexa.workers.dev/contact'; // <-- replace with your deployed Worker URL
+  const CONTACT_ENDPOINT = (window.SUPABASE_URL || '') + '/functions/v1/contact';
 
   const contactForm = document.getElementById('contact-form');
   const contactStatus = document.getElementById('contact-form-status');
@@ -142,7 +142,10 @@
       try {
         const res = await fetch(CONTACT_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.SUPABASE_ANON_KEY || ''}`,
+          },
           body: JSON.stringify({ name, email, company, message }),
         });
 

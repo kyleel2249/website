@@ -230,7 +230,7 @@
 }
 
 .form-field input, .form-field textarea {
-  background: #0A1322;
+  background: var(--surface-raised);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-sm);
   padding: var(--space-3) var(--space-4);

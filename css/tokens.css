@@ -5,22 +5,22 @@
 
 :root {
   /* ---- Color: surfaces ---- */
-  --bg: #070D1A;
-  --surface: #111A2E;
-  --surface-raised: #15213A;
-  --surface-glass: rgba(17, 26, 46, 0.55);
-  --border-glass: rgba(154, 174, 198, 0.14);
-  --border-glass-strong: rgba(154, 174, 198, 0.28);
+  --bg: #EEF2F8;
+  --surface: #FFFFFF;
+  --surface-raised: #F7F9FC;
+  --surface-glass: rgba(255, 255, 255, 0.7);
+  --border-glass: rgba(30, 60, 110, 0.12);
+  --border-glass-strong: rgba(30, 60, 110, 0.22);
 
   /* ---- Color: brand ---- */
   --blue: #1E6BFF;
-  --cyan: #19D3FF;
+  --cyan: #0BB8D8;
   --purple: #7C4DFF;
 
   /* ---- Color: text ---- */
-  --text-primary: #EAF2FF;
-  --text-secondary: #9AAEC6;
-  --text-muted: #6B7E99;
+  --text-primary: #0B1B33;
+  --text-secondary: #46586F;
+  --text-muted: #7888A0;
 
   /* ---- Color: semantic ---- */
   --success: #2BD9A0;
@@ -34,9 +34,9 @@
   --blue-light: #3A85FF;
   --grad-primary: linear-gradient(135deg, var(--blue-light) 0%, var(--cyan) 100%);
   --grad-purple: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
-  --grad-mesh: radial-gradient(circle at 15% 10%, rgba(124,77,255,0.16), transparent 45%),
-               radial-gradient(circle at 85% 0%, rgba(25,211,255,0.12), transparent 40%),
-               radial-gradient(circle at 50% 100%, rgba(30,107,255,0.10), transparent 50%);
+  --grad-mesh: radial-gradient(circle at 15% 10%, rgba(124,77,255,0.10), transparent 45%),
+               radial-gradient(circle at 85% 0%, rgba(11,184,216,0.10), transparent 40%),
+               radial-gradient(circle at 50% 100%, rgba(30,107,255,0.08), transparent 50%);
 
   /* ---- Typography ---- */
   --font-display: 'Space Grotesk', sans-serif;
@@ -90,8 +90,8 @@
   /* ---- Elevation ---- */
   --shadow-glow-blue: 0 0 40px rgba(30, 107, 255, 0.25);
   --shadow-glow-cyan: 0 0 40px rgba(25, 211, 255, 0.2);
-  --shadow-card: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
-  --shadow-pop: 0 10px 30px -8px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 20px 60px -20px rgba(15, 30, 60, 0.18);
+  --shadow-pop: 0 10px 30px -8px rgba(15, 30, 60, 0.14);
 }
 
 @media (prefers-reduced-motion: reduce) {

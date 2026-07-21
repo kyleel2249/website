@@ -80,7 +80,7 @@
 }
 
 .code-block {
-  background: #0A1322;
+  background: var(--surface-raised);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -133,7 +133,7 @@
 
 .auth-mock input {
   flex: 1;
-  background: #0A1322;
+  background: var(--surface-raised);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-sm);
   padding: var(--space-2) var(--space-3);
