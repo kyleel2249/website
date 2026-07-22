@@ -185,8 +185,19 @@ code, pre, kbd {
   background: var(--grad-primary);
   color: #04101F;
   box-shadow: var(--shadow-glow-blue);
+  position: relative;
+  overflow: hidden;
 }
-.btn-primary:hover { box-shadow: 0 0 56px rgba(25, 211, 255, 0.4); transform: translateY(-1px); }
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.5s var(--ease-out);
+}
+.btn-primary:hover::after { transform: translateX(100%); }
+.btn-primary:hover { box-shadow: 0 0 64px rgba(13, 216, 255, 0.50), 0 0 120px rgba(13, 216, 255, 0.15); transform: translateY(-2px); }
 
 .btn-ghost {
   background: transparent;
@@ -229,27 +240,7 @@ code, pre, kbd {
   color: transparent;
 }
 
-/* ---- Scroll reveal ---- */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
-}
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1; transform: none; }
-}
-
-/* If JS never runs (blocked, error, disabled), content must not stay hidden.
-   index.html sets class="no-js" on <html> by default and a tiny inline script
-   swaps it to "js" immediately; this rule only matches when that swap never happened. */
-html.no-js [data-reveal] {
-  opacity: 1;
-  transform: none;
-}
+/* Scroll reveal is handled by css/animations.css */
 /* ---- Grid helpers ---- */
 .grid {
   display: grid;
@@ -272,11 +263,11 @@ html.no-js [data-reveal] {
   color: white;
 }
 
-::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
-  background: var(--surface-raised);
+  background: linear-gradient(180deg, var(--blue), var(--cyan));
   border-radius: var(--radius-pill);
   border: 2px solid var(--bg);
 }
-::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--cyan), var(--purple)); }

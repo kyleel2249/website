@@ -4,39 +4,36 @@
    ========================================================================== */
 
 :root {
-  /* ---- Color: surfaces ---- */
-  --bg: #EEF2F8;
-  --surface: #FFFFFF;
-  --surface-raised: #F7F9FC;
-  --surface-glass: rgba(255, 255, 255, 0.7);
-  --border-glass: rgba(30, 60, 110, 0.12);
-  --border-glass-strong: rgba(30, 60, 110, 0.22);
+  /* ---- Color: surfaces (dark theme) ---- */
+  --bg: #040B18;
+  --surface: #071120;
+  --surface-raised: #0C1A30;
+  --surface-glass: rgba(7, 17, 32, 0.72);
+  --border-glass: rgba(80, 140, 255, 0.13);
+  --border-glass-strong: rgba(100, 170, 255, 0.22);
 
   /* ---- Color: brand ---- */
   --blue: #1E6BFF;
-  --cyan: #0BB8D8;
-  --purple: #7C4DFF;
+  --cyan: #0DD8FF;
+  --purple: #9B6EFF;
 
   /* ---- Color: text ---- */
-  --text-primary: #0B1B33;
-  --text-secondary: #46586F;
-  --text-muted: #7888A0;
+  --text-primary: #EEF5FF;
+  --text-secondary: #9AB4D4;
+  --text-muted: #587090;
 
   /* ---- Color: semantic ---- */
-  --success: #2BD9A0;
+  --success: #2BFFB8;
   --warning: #FFB020;
   --danger: #FF5470;
 
   /* ---- Gradients ---- */
-  /* blue-light is a brightened variant of --blue used only as the grad-primary
-     start stop, so dark button text (#04101F) keeps a safe contrast margin
-     across the full gradient. --blue itself stays unchanged for borders/accents. */
-  --blue-light: #3A85FF;
+  --blue-light: #4A9DFF;
   --grad-primary: linear-gradient(135deg, var(--blue-light) 0%, var(--cyan) 100%);
   --grad-purple: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
-  --grad-mesh: radial-gradient(circle at 15% 10%, rgba(124,77,255,0.10), transparent 45%),
-               radial-gradient(circle at 85% 0%, rgba(11,184,216,0.10), transparent 40%),
-               radial-gradient(circle at 50% 100%, rgba(30,107,255,0.08), transparent 50%);
+  --grad-mesh: radial-gradient(ellipse 80% 60% at 15% 0%, rgba(124,77,255,0.18), transparent 55%),
+               radial-gradient(ellipse 70% 50% at 88% 5%, rgba(13,216,255,0.14), transparent 50%),
+               radial-gradient(ellipse 60% 60% at 50% 100%, rgba(30,107,255,0.12), transparent 55%);
 
   /* ---- Typography ---- */
   --font-display: 'Space Grotesk', sans-serif;
@@ -83,15 +80,18 @@
   /* ---- Motion ---- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --dur-fast: 150ms;
-  --dur-base: 280ms;
-  --dur-slow: 520ms;
+  --dur-base: 300ms;
+  --dur-slow: 560ms;
+  --dur-xslow: 900ms;
 
   /* ---- Elevation ---- */
-  --shadow-glow-blue: 0 0 40px rgba(30, 107, 255, 0.25);
-  --shadow-glow-cyan: 0 0 40px rgba(25, 211, 255, 0.2);
-  --shadow-card: 0 20px 60px -20px rgba(15, 30, 60, 0.18);
-  --shadow-pop: 0 10px 30px -8px rgba(15, 30, 60, 0.14);
+  --shadow-glow-blue: 0 0 48px rgba(30, 107, 255, 0.35), 0 0 80px rgba(30, 107, 255, 0.12);
+  --shadow-glow-cyan: 0 0 48px rgba(13, 216, 255, 0.30), 0 0 80px rgba(13, 216, 255, 0.10);
+  --shadow-glow-purple: 0 0 48px rgba(155, 110, 255, 0.28);
+  --shadow-card: 0 24px 72px -16px rgba(0, 0, 0, 0.60), 0 0 0 1px var(--border-glass);
+  --shadow-pop: 0 12px 36px -8px rgba(0, 0, 0, 0.50);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -99,5 +99,6 @@
     --dur-fast: 0ms;
     --dur-base: 0ms;
     --dur-slow: 0ms;
+    --dur-xslow: 0ms;
   }
 }

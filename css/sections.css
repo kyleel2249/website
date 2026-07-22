@@ -100,7 +100,8 @@
 .roadmap-phase[data-status="active"] .roadmap-phase-num {
   border-color: var(--cyan);
   color: var(--cyan);
-  box-shadow: 0 0 16px rgba(25,211,255,0.4);
+  box-shadow: 0 0 24px rgba(13, 216, 255, 0.55), 0 0 48px rgba(13, 216, 255, 0.20);
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
 .roadmap-phase h3 { font-size: 1.05rem; margin-bottom: var(--space-2); }

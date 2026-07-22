@@ -99,11 +99,11 @@
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-1);
-    background: var(--surface);
-    border: 1px solid var(--border-glass);
+    background: rgba(7, 17, 32, 0.96);
+    border: 1px solid var(--border-glass-strong);
     border-radius: var(--radius-md);
     padding: var(--space-3);
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 24px 72px rgba(0,0,0,0.7), 0 0 40px rgba(13,216,255,0.06);
     transform: translateY(-12px);
     opacity: 0;
     pointer-events: none;
