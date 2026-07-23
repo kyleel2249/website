@@ -192,4 +192,21 @@
       });
     });
   }
+
+  // ---- Hero entrance animation ----
+  // Uses two rAF calls so the browser has committed one paint with elements in
+  // their initial hidden state before the animation class is added.
+  const heroEl = document.querySelector('.hero');
+  if (heroEl) {
+    if (reduceMotionQuery.matches) {
+      // Skip animation entirely — immediately reveal all data-hero elements.
+      heroEl.classList.add('hero-entered');
+    } else {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          heroEl.classList.add('hero-entered');
+        });
+      });
+    }
+  }
 })();

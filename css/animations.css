@@ -256,6 +256,36 @@
   animation: gradient-shift 5s ease infinite;
 }
 
+/* ---- Hero entrance animation ---- */
+/* Elements start hidden only when JS is active (html.js class is set inline) */
+html.js [data-hero] {
+  opacity: 0;
+  transform: translateY(28px);
+  /* No transition here — we use animation once .hero-entered is added */
+}
+
+.hero.hero-entered [data-hero] {
+  animation: slide-up var(--dur-slow) var(--ease-out) both;
+}
+
+/* Staggered delays for each hero element */
+.hero.hero-entered [data-hero="0"] { animation-delay: 0.05s; }  /* eyebrow */
+.hero.hero-entered [data-hero="1"] { animation-delay: 0.20s; }  /* h1 line 1 */
+.hero.hero-entered [data-hero="2"] { animation-delay: 0.33s; }  /* h1 line 2 */
+.hero.hero-entered [data-hero="3"] { animation-delay: 0.46s; }  /* h1 line 3 (gradient) */
+.hero.hero-entered [data-hero="4"] { animation-delay: 0.60s; }  /* lede paragraph */
+.hero.hero-entered [data-hero="5"] { animation-delay: 0.74s; }  /* CTAs */
+.hero.hero-entered [data-hero="6"] { animation-delay: 0.90s; }  /* stats */
+
+/* Responsive: skip animation, show immediately */
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-hero] { opacity: 1; transform: none; }
+  .hero.hero-entered [data-hero] { animation: none; }
+}
+
+/* If JS never ran, show all hero content */
+html.no-js [data-hero] { opacity: 1; transform: none; }
+
 /* ---- Responsive ---- */
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; }

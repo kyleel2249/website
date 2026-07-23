@@ -26,24 +26,36 @@
 <meta name="theme-color" content="#070D1A">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 
-<!-- Fonts -->
+<!-- Fonts: preconnect first, then load async (display=swap prevents render-blocking) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
 
-<!-- Styles -->
+<!-- Critical styles (above fold) -->
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/hero.css">
-<link rel="stylesheet" href="css/services.css">
-<link rel="stylesheet" href="css/dev-portal.css">
-<link rel="stylesheet" href="css/diagnostics.css">
-<link rel="stylesheet" href="css/sections.css">
-<link rel="stylesheet" href="css/reviews.css">
-<link rel="stylesheet" href="css/blog.css">
-<link rel="stylesheet" href="css/support-widget.css">
 <link rel="stylesheet" href="css/animations.css">
+
+<!-- Non-critical styles (loaded async, below fold) -->
+<link rel="stylesheet" href="css/services.css"      media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/dev-portal.css"    media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/diagnostics.css"   media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/sections.css"      media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/reviews.css"       media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/blog.css"          media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/support-widget.css" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="css/services.css">
+  <link rel="stylesheet" href="css/dev-portal.css">
+  <link rel="stylesheet" href="css/diagnostics.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/reviews.css">
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="css/support-widget.css">
+</noscript>
 
 <!-- Schema.org: Organization -->
 <script type="application/ld+json" id="org-schema">
@@ -120,18 +132,18 @@
     <div class="hero-bg-grid" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Connected Intelligent Technology Exchange Architecture</span>
+        <span class="eyebrow" data-hero="0">Connected Intelligent Technology Exchange Architecture</span>
         <h1>
-          <span class="line">Connected infrastructure</span>
-          <span class="line">for software</span>
-          <span class="line text-grad">&amp; web systems</span>
+          <span class="line" data-hero="1">Connected infrastructure</span>
+          <span class="line" data-hero="2">for software</span>
+          <span class="line text-grad" data-hero="3">&amp; web systems</span>
         </h1>
-        <p class="hero-lede">Cintexa engineers the software, cloud infrastructure, and web systems that power enterprise transformation — built to remove inefficiency and deliver measurable performance gains, end to end.</p>
-        <div class="hero-ctas">
+        <p class="hero-lede" data-hero="4">Cintexa engineers the software, cloud infrastructure, and web systems that power enterprise transformation — built to remove inefficiency and deliver measurable performance gains, end to end.</p>
+        <div class="hero-ctas" data-hero="5">
           <a href="#services" class="btn btn-primary">Explore Services</a>
           <a href="#developer-portal" class="btn btn-ghost">View Documentation</a>
         </div>
-        <div class="hero-stats">
+        <div class="hero-stats" data-hero="6">
           <div class="hero-stat"><span class="num">40%</span><span class="label">Avg. admin reduction</span></div>
           <div class="hero-stat"><span class="num">2.5×</span><span class="label">Avg. conversion lift</span></div>
           <div class="hero-stat"><span class="num">99.95%</span><span class="label">Platform uptime</span></div>
