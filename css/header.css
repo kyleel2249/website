@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HEADER / NAV
+   CINTEXA HEADER / NAV — Enterprise Light Theme
    ========================================================================== */
 
 .site-header {
@@ -9,17 +9,19 @@
   right: 0;
   z-index: 1000;
   padding: var(--space-4) 0;
-  transition: background var(--dur-base) var(--ease-out),
-              border-color var(--dur-base) var(--ease-out),
-              padding var(--dur-base) var(--ease-out);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    padding var(--dur-base) var(--ease-out);
 }
 
 .site-header.is-scrolled {
-  background: rgba(7, 13, 26, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom-color: var(--border-glass);
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow-sm);
   padding: var(--space-3) 0;
 }
 
@@ -38,18 +40,16 @@
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: var(--tracking-tight);
-}
-
-.brand-mark {
-  width: 30px;
-  height: 30px;
+  color: var(--navy);
   flex-shrink: 0;
 }
+
+.brand-mark { width: 30px; height: 30px; flex-shrink: 0; }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  gap: var(--space-5);
 }
 
 .nav-links a {
@@ -61,20 +61,22 @@
   transition: color var(--dur-fast) var(--ease-out);
 }
 
-.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text-primary); }
+.nav-links a:hover,
+.nav-links a[aria-current="page"] { color: var(--blue); }
 
 .nav-links a::after {
   content: '';
   position: absolute;
   left: 0; right: 0; bottom: -2px;
   height: 2px;
-  background: var(--grad-primary);
+  background: var(--blue);
+  border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-base) var(--ease-out);
 }
-
-.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after { transform: scaleX(1); }
 
 .nav-actions { display: flex; align-items: center; gap: var(--space-3); }
 
@@ -85,12 +87,13 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border-glass-strong);
+  border: 1.5px solid var(--border);
+  color: var(--text-secondary);
 }
-
 .nav-toggle svg { width: 18px; height: 18px; }
+.nav-toggle:hover { border-color: var(--blue); color: var(--blue); }
 
-@media (max-width: 880px) {
+@media (max-width: 900px) {
   .nav-links {
     position: fixed;
     top: 64px;
@@ -99,11 +102,11 @@
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-1);
-    background: rgba(7, 17, 32, 0.96);
-    border: 1px solid var(--border-glass-strong);
+    background: #FFFFFF;
+    border: 1.5px solid var(--border);
     border-radius: var(--radius-md);
     padding: var(--space-3);
-    box-shadow: 0 24px 72px rgba(0,0,0,0.7), 0 0 40px rgba(13,216,255,0.06);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-12px);
     opacity: 0;
     pointer-events: none;
@@ -118,7 +121,7 @@
     padding: var(--space-3) var(--space-3);
     border-radius: var(--radius-sm);
   }
-  .nav-links a:hover { background: rgba(255,255,255,0.04); }
+  .nav-links a:hover { background: var(--blue-pale); color: var(--blue); }
   .nav-links a::after { display: none; }
   .nav-toggle { display: flex; }
   .nav-actions .btn-ghost { display: none; }

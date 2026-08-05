@@ -1,13 +1,25 @@
 /* ==========================================================================
-   CASE STUDIES
+   CINTEXA SECTIONS — Enterprise Light Theme
+   Case Studies · Roadmap · Pricing · Contact
    ========================================================================== */
 
+/* ============================================================
+   CASE STUDIES
+   ============================================================ */
+
+.case-studies-section { background: var(--cloud); }
+
 .case-study-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--space-6);
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+  transition: box-shadow var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
 }
+.case-study-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
 
 .case-study-card .tag { width: fit-content; }
 
@@ -18,17 +30,18 @@
 }
 
 .case-study-row .ck-label {
-  font-family: var(--font-mono);
   font-size: var(--fs-caption);
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
+  font-weight: 600;
   padding-top: 2px;
 }
 
 .case-study-row p {
   font-size: var(--fs-body-sm);
   color: var(--text-secondary);
+  line-height: var(--lh-normal);
 }
 
 .case-study-metric {
@@ -36,12 +49,12 @@
   align-items: baseline;
   gap: var(--space-2);
   padding-top: var(--space-3);
-  border-top: 1px solid var(--border-glass);
+  border-top: 1px solid var(--border);
 }
 
 .case-study-metric .metric-num {
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 700;
   background: var(--grad-primary);
   -webkit-background-clip: text;
@@ -54,9 +67,11 @@
   color: var(--text-secondary);
 }
 
-/* ==========================================================================
+/* ============================================================
    ROADMAP
-   ========================================================================== */
+   ============================================================ */
+
+.roadmap-section { }
 
 .roadmap-track {
   display: grid;
@@ -72,14 +87,17 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--purple), var(--blue));
-  opacity: 0.3;
+  background: linear-gradient(90deg, var(--blue), var(--cyan-2), var(--blue));
+  opacity: 0.25;
   z-index: 0;
 }
 
 .roadmap-phase {
   position: relative;
   z-index: 1;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
 }
 
@@ -92,28 +110,33 @@
   justify-content: center;
   font-family: var(--font-display);
   font-weight: 700;
-  background: var(--surface);
-  border: 2px solid var(--border-glass-strong);
+  background: var(--surface-raised);
+  border: 2px solid var(--border);
   margin-bottom: var(--space-4);
+  font-size: 0.9rem;
 }
 
 .roadmap-phase[data-status="active"] .roadmap-phase-num {
-  border-color: var(--cyan);
-  color: var(--cyan);
-  box-shadow: 0 0 24px rgba(13, 216, 255, 0.55), 0 0 48px rgba(13, 216, 255, 0.20);
-  animation: pulse-glow 3s ease-in-out infinite;
+  border-color: var(--blue);
+  color: var(--blue);
+  background: var(--blue-pale-2);
 }
 
-.roadmap-phase h3 { font-size: 1.05rem; margin-bottom: var(--space-2); }
-.roadmap-phase p { font-size: var(--fs-body-sm); color: var(--text-secondary); margin-bottom: var(--space-3); }
+.roadmap-phase[data-status="active"] {
+  border-color: rgba(37,99,235,0.3);
+  box-shadow: var(--shadow-sm);
+}
+
+.roadmap-phase h3 { font-size: 1rem; margin-bottom: var(--space-2); }
+.roadmap-phase p  { font-size: var(--fs-body-sm); color: var(--text-secondary); margin-bottom: var(--space-3); }
 
 .roadmap-status {
-  font-family: var(--font-mono);
   font-size: var(--fs-caption);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
+  font-weight: 600;
 }
-.roadmap-phase[data-status="active"] .roadmap-status { color: var(--success); }
+.roadmap-phase[data-status="active"]   .roadmap-status { color: var(--blue); }
 .roadmap-phase[data-status="upcoming"] .roadmap-status { color: var(--text-muted); }
 
 @media (max-width: 880px) {
@@ -121,59 +144,64 @@
   .roadmap-track::before { display: none; }
 }
 
-/* ==========================================================================
+/* ============================================================
    PRICING
-   ========================================================================== */
+   ============================================================ */
+
+.pricing-section { background: var(--cloud); }
 
 .pricing-grid {
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
   align-items: stretch;
 }
 
 .pricing-card {
-  padding: var(--space-6);
+  background: #FFFFFF;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-7) var(--space-6);
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: box-shadow var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
 }
+.pricing-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
 
 .pricing-card.is-featured {
-  border-color: var(--cyan);
-  box-shadow: var(--shadow-glow-cyan);
+  border-color: var(--blue);
+  box-shadow: var(--shadow-blue);
 }
 
 .pricing-card.is-featured::before {
   content: 'MOST POPULAR';
   position: absolute;
-  top: -12px;
+  top: -14px;
   left: var(--space-6);
-  background: var(--grad-primary);
-  color: #04101F;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
+  background: var(--blue);
+  color: #FFFFFF;
+  font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: var(--tracking-wide);
-  padding: 0.25rem 0.7rem;
+  padding: 0.25rem 0.8rem;
   border-radius: var(--radius-pill);
 }
 
-.pricing-card h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
-.pricing-card .pricing-desc { font-size: var(--fs-body-sm); color: var(--text-secondary); margin-bottom: var(--space-5); }
+.pricing-card h3 { font-size: 1.2rem; margin-bottom: var(--space-2); }
+.pricing-card .pricing-desc { font-size: var(--fs-body-sm); color: var(--text-secondary); margin-bottom: var(--space-5); line-height: var(--lh-normal); }
 
 .pricing-price {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-6);
 }
 .pricing-price .amount {
   font-family: var(--font-display);
-  font-size: 1.85rem;
+  font-size: 2.25rem;
   font-weight: 700;
-  background: var(--grad-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--navy);
 }
 .pricing-price .period { font-size: var(--fs-body-sm); color: var(--text-muted); }
 
@@ -181,7 +209,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-7);
   flex: 1;
 }
 
@@ -196,149 +224,49 @@
 .pricing-features svg {
   width: 16px; height: 16px;
   flex-shrink: 0;
-  margin-top: 2px;
-  color: var(--success);
+  margin-top: 1px;
+  color: var(--green);
 }
 
-@media (max-width: 980px) { .pricing-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
 
-/* ==========================================================================
+/* ============================================================
    CONTACT
-   ========================================================================== */
+   ============================================================ */
 
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-7);
+  gap: var(--space-10);
   align-items: start;
 }
 
 .contact-form {
-  padding: var(--space-6);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-7);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
-
-.form-field { display: flex; flex-direction: column; gap: var(--space-2); }
-
-.form-field label {
-  font-size: var(--fs-caption);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-}
-
-.form-field input, .form-field textarea {
-  background: var(--surface-raised);
-  border: 1px solid var(--border-glass);
-  border-radius: var(--radius-sm);
-  padding: var(--space-3) var(--space-4);
-  transition: border-color var(--dur-fast) var(--ease-out);
-}
-
-.form-field input:focus, .form-field textarea:focus {
-  border-color: var(--cyan);
-  outline: none;
-}
-
-.form-field textarea { resize: vertical; min-height: 120px; }
-
-.form-status {
-  font-size: var(--fs-body-sm);
-  display: none;
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-sm);
-}
-.form-status.is-visible { display: block; }
-.form-status.is-success { background: rgba(43,217,160,0.1); color: var(--success); border: 1px solid rgba(43,217,160,0.3); }
-.form-status.is-error { background: rgba(255,84,112,0.1); color: var(--danger); border: 1px solid rgba(255,84,112,0.3); }
 
 .contact-info { display: flex; flex-direction: column; gap: var(--space-5); }
 
 .contact-info-item { display: flex; gap: var(--space-4); }
 
 .contact-info-icon {
-  width: 40px; height: 40px;
-  border-radius: var(--radius-sm);
-  background: var(--surface-raised);
-  border: 1px solid var(--border-glass);
+  width: 44px; height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--blue-pale-2);
+  border: 1px solid rgba(37,99,235,0.15);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.contact-info-icon svg { width: 18px; height: 18px; color: var(--cyan); }
+.contact-info-icon svg { width: 18px; height: 18px; color: var(--blue); }
 
-.contact-info-item h3 { font-size: 0.95rem; margin-bottom: var(--space-1); font-family: var(--font-body); font-weight: 600; letter-spacing: normal; }
-.contact-info-item p { font-size: var(--fs-body-sm); color: var(--text-secondary); }
+.contact-info-item h3 { font-size: 0.95rem; margin-bottom: var(--space-1); font-weight: 600; letter-spacing: normal; }
+.contact-info-item p  { font-size: var(--fs-body-sm); color: var(--text-secondary); }
 
 @media (max-width: 880px) { .contact-layout { grid-template-columns: 1fr; } }
-
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
-
-.site-footer {
-  border-top: 1px solid var(--border-glass);
-  padding-top: var(--space-8);
-  padding-bottom: var(--space-6);
-}
-
-.footer-top {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
-  gap: var(--space-6);
-  padding-bottom: var(--space-7);
-}
-
-.footer-brand p {
-  font-size: var(--fs-body-sm);
-  color: var(--text-secondary);
-  margin-top: var(--space-3);
-  max-width: 280px;
-}
-
-.footer-col-label {
-  font-family: var(--font-mono);
-  font-size: var(--fs-caption);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: var(--space-4);
-}
-
-.footer-col ul { display: flex; flex-direction: column; gap: var(--space-3); }
-.footer-col a { font-size: var(--fs-body-sm); color: var(--text-secondary); transition: color var(--dur-fast); }
-.footer-col a:hover { color: var(--cyan); }
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: var(--space-5);
-  padding-right: 88px; /* reserves space so social icons never sit under the fixed Cintexa Support launcher */
-  border-top: 1px solid var(--border-glass);
-  font-size: var(--fs-caption);
-  color: var(--text-muted);
-  flex-wrap: wrap;
-  gap: var(--space-3);
-}
-
-.footer-socials { display: flex; gap: var(--space-3); }
-.footer-socials a {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--border-glass-strong);
-  display: flex; align-items: center; justify-content: center;
-  transition: border-color var(--dur-fast), color var(--dur-fast);
-}
-.footer-socials a:hover { border-color: var(--cyan); color: var(--cyan); }
-.footer-socials svg { width: 15px; height: 15px; }
-
-@media (max-width: 880px) {
-  .footer-top { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 560px) {
-  .footer-top { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; padding-right: 0; }
-}

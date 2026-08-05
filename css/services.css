@@ -1,44 +1,38 @@
 /* ==========================================================================
-   SERVICES + PLATFORM ECOSYSTEM
+   CINTEXA SERVICES — Light Theme
    ========================================================================== */
 
 .service-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--space-6);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  transition: transform var(--dur-base) var(--ease-out),
-              border-color var(--dur-base) var(--ease-out),
-              box-shadow var(--dur-base) var(--ease-out);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
 }
 
 .service-card:hover {
-  transform: translateY(-6px) scale(1.01);
-  border-color: var(--cyan);
-  box-shadow: 0 32px 80px -20px rgba(0, 0, 0, 0.7), 0 0 40px rgba(13, 216, 255, 0.10);
+  transform: translateY(-5px);
+  border-color: rgba(37, 99, 235, 0.25);
+  box-shadow: var(--shadow-md);
 }
 
 .service-icon {
-  width: 48px;
-  height: 48px;
+  width: 50px; height: 50px;
   border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   background: var(--grad-primary);
   flex-shrink: 0;
 }
+.service-icon svg { width: 22px; height: 22px; stroke: #FFFFFF; fill: none; }
 
-.service-icon svg { width: 24px; height: 24px; stroke: #04101F; }
-
-.service-card h3 {
-  font-size: var(--fs-display-sm);
-}
-
-.service-card p {
-  color: var(--text-secondary);
-  font-size: var(--fs-body-sm);
-}
+.service-card h3 { font-size: 1.1rem; }
+.service-card p  { color: var(--text-secondary); font-size: var(--fs-body-sm); line-height: var(--lh-normal); }
 
 .service-card .service-link {
   margin-top: auto;
@@ -47,46 +41,33 @@
   gap: var(--space-2);
   font-size: var(--fs-body-sm);
   font-weight: 600;
-  color: var(--cyan);
+  color: var(--blue);
 }
-
 .service-card .service-link svg {
   width: 14px; height: 14px;
   transition: transform var(--dur-fast) var(--ease-out);
 }
-
 .service-card:hover .service-link svg { transform: translateX(3px); }
 
-/* ---- Platform ecosystem ---- */
-.platform-grid {
-  grid-template-columns: repeat(4, 1fr);
-}
-
+/* Platform ecosystem */
 .platform-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
-  border-top: 2px solid var(--border-glass);
-  transition: border-color var(--dur-base) var(--ease-out);
+  border-top: 3px solid var(--border);
+  transition: box-shadow var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
 }
+.platform-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
 
-.platform-card[data-accent="blue"] { border-top-color: var(--blue); }
-.platform-card[data-accent="cyan"] { border-top-color: var(--cyan); }
+.platform-card[data-accent="blue"]   { border-top-color: var(--blue); }
+.platform-card[data-accent="cyan"]   { border-top-color: var(--cyan-2); }
 .platform-card[data-accent="purple"] { border-top-color: var(--purple); }
+.platform-card[data-accent="green"]  { border-top-color: var(--green); }
 
 .platform-card .tag { margin-bottom: var(--space-4); }
+.platform-card h3 { font-size: 1.05rem; margin-bottom: var(--space-2); }
+.platform-card p  { font-size: var(--fs-body-sm); color: var(--text-secondary); }
 
-.platform-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: var(--space-2);
-}
-
-.platform-card p {
-  font-size: var(--fs-body-sm);
-  color: var(--text-secondary);
-}
-
-@media (max-width: 980px) {
-  .platform-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 560px) {
-  .platform-grid { grid-template-columns: 1fr; }
-}
+@media (max-width: 980px) { .platform-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .platform-grid { grid-template-columns: 1fr; } }
