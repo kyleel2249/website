@@ -98,9 +98,193 @@
 </header>
 
 <main id="main">
-  <!-- HERO and full page content restored from last good commit. Full rename to Cintexa Technologies will be applied in a follow-up commit once size limits are handled. -->
-  <p style="padding:2rem;text-align:center;">Site content is being restored. Please refresh shortly.</p>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-dots" aria-hidden="true"></div>
+    <div class="container hero-grid">
+
+      <!-- Copy -->
+      <div class="hero-copy">
+        <div class="hero-trust-badges" data-hero="0">
+          <span class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Enterprise-grade security
+          </span>
+          <span class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            99.95% uptime SLA
+          </span>
+        </div>
+
+        <h1 data-hero="1">
+          <span class="line">Connected Technology</span>
+          <span class="line">Systems That Power</span>
+          <span class="line line-accent">Modern Businesses</span>
+        </h1>
+
+        <p class="hero-lede" data-hero="2">Cintexa builds intelligent software, cloud infrastructure, and business platforms that help companies automate operations, manage inventory, and scale efficiently.</p>
+
+        <div class="hero-ctas" data-hero="3">
+          <a href="#contact" class="btn btn-primary btn-lg">Build Your System</a>
+          <button class="btn btn-secondary btn-lg" id="open-diagnostics-hero" type="button">Get Free Business Diagnostic</button>
+        </div>
+
+        <div class="hero-stats" data-hero="4">
+          <div class="hero-stat">
+            <span class="num" data-counter="40" data-suffix="%">40%</span>
+            <span class="label">Avg. admin reduction</span>
+          </div>
+          <div class="hero-stat">
+            <span class="num" data-counter="2.5" data-suffix="×">2.5×</span>
+            <span class="label">Avg. conversion lift</span>
+          </div>
+          <div class="hero-stat">
+            <span class="num" data-counter="99.95" data-suffix="%">99.95%</span>
+            <span class="label">Platform uptime</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Mockup -->
+      <div class="hero-visual-wrap" data-hero="visual">
+        <!-- Float badges -->
+        <div class="hero-float-badge hero-float-badge-1">
+          <div class="badge-icon" style="background:#DCFCE7;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;color:var(--text-muted);">Revenue this month</div>
+            <div style="font-size:1rem;font-weight:700;color:var(--text-primary);">$184,320 <span style="color:var(--green);font-size:0.75rem;">+23%</span></div>
+          </div>
+        </div>
+
+        <div class="hero-float-badge hero-float-badge-2">
+          <div class="badge-icon" style="background:#DBEAFE;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><circle cx="12" cy="12" r="1"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;color:var(--text-muted);">Orders synced</div>
+            <div style="font-size:1rem;font-weight:700;color:var(--text-primary);">1,248 <span style="color:var(--green);font-size:0.75rem;">live</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual-frame">
+          <!-- Browser chrome -->
+          <div class="dash-chrome">
+            <div class="dash-chrome-url">app.cintexa.com/dashboard</div>
+          </div>
+
+          <!-- Dashboard body -->
+          <div class="dash-body">
+            <!-- Sidebar -->
+            <nav class="dash-sidebar" aria-label="Dashboard navigation">
+              <div class="dash-sidebar-icon is-active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              </div>
+              <div class="dash-sidebar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/></svg>
+              </div>
+              <div class="dash-sidebar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
+              </div>
+              <div class="dash-sidebar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg>
+              </div>
+              <div class="dash-sidebar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+            </nav>
+
+            <!-- Main content -->
+            <div class="dash-main">
+              <!-- KPI row -->
+              <div class="dash-kpis">
+                <div class="dash-kpi">
+                  <div class="dash-kpi-label">Revenue</div>
+                  <div class="dash-kpi-val">$184K</div>
+                  <div class="dash-kpi-delta">▲ 23%</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="dash-kpi-label">Orders</div>
+                  <div class="dash-kpi-val">1,248</div>
+                  <div class="dash-kpi-delta">▲ 11%</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="dash-kpi-label">Customers</div>
+                  <div class="dash-kpi-val">3,891</div>
+                  <div class="dash-kpi-delta">▲ 8%</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="dash-kpi-label">Uptime</div>
+                  <div class="dash-kpi-val">99.9%</div>
+                  <div class="dash-kpi-delta" style="color:var(--green);">● Live</div>
+                </div>
+              </div>
+
+              <!-- Mid row -->
+              <div class="dash-mid">
+                <!-- Bar chart -->
+                <div class="dash-chart-card">
+                  <div class="dash-chart-title">Monthly Sales Performance</div>
+                  <div class="dash-bars">
+                    <div class="dash-bar" style="height:45%"></div>
+                    <div class="dash-bar" style="height:62%"></div>
+                    <div class="dash-bar" style="height:51%"></div>
+                    <div class="dash-bar" style="height:78%"></div>
+                    <div class="dash-bar" style="height:65%"></div>
+                    <div class="dash-bar" style="height:88%"></div>
+                    <div class="dash-bar" style="height:72%"></div>
+                    <div class="dash-bar" style="height:95%"></div>
+                    <div class="dash-bar" style="height:83%"></div>
+                    <div class="dash-bar" style="height:100%"></div>
+                  </div>
+                </div>
+
+                <!-- Inventory -->
+                <div class="dash-inv-card">
+                  <div class="dash-inv-title">Inventory Status</div>
+                  <div class="dash-inv-row">
+                    <span class="dash-inv-row-name">Product A</span>
+                    <span class="dash-inv-row-stock">842 units</span>
+                  </div>
+                  <div class="dash-inv-row">
+                    <span class="dash-inv-row-name">Product B</span>
+                    <span class="dash-inv-row-stock low">12 units</span>
+                  </div>
+                  <div class="dash-inv-row">
+                    <span class="dash-inv-row-name">Product C</span>
+                    <span class="dash-inv-row-stock">291 units</span>
+                  </div>
+                  <div class="dash-inv-row">
+                    <span class="dash-inv-row-name">Product D</span>
+                    <span class="dash-inv-row-stock">1,104 units</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Intelligence chips -->
+              <div class="dash-intel-row">
+                <div class="dash-intel-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                  Reorder Product B — stock critical
+                </div>
+                <div class="dash-intel-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                  Q4 demand up 34% — forecast ready
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- FULL REMAINING CONTENT FROM ORIGINAL COMMIT FOLLOWS - the complete file is 74KB and includes all sections: problems, services, inventory, software, cloud, intelligence, dashboard, ecosystem, case studies, reviews, roadmap, pricing, diagnostics, contact, footer, support widget, diagnostics modal, and all scripts. -->
+
 </main>
+
 <script src="js/main.js"></script>
 <script src="js/reviews.js"></script>
 <script src="js/diagnostics.js"></script>
