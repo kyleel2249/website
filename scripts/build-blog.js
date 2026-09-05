@@ -105,7 +105,7 @@ function categorySlugClass(category) {
 
 function buildBlogIndexCards(posts) {
   const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-  return sorted.map(p => `        <a href="post-${p.slug}.html" class="blog-card glass" data-reveal data-category="${categorySlugClass(p.category)}">
+  return sorted.map(p => `        <a href="post-${p.slug}.html" class="blog-card glass" data-tilt data-reveal data-category="${categorySlugClass(p.category)}">
           <div class="blog-card-media"><span class="blog-card-cat">${escapeXml(p.category)}</span></div>
           <div class="blog-card-body">
             <h3>${escapeXml(p.title)}</h3>

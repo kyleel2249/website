@@ -107,6 +107,8 @@ const html = `<!DOCTYPE html>
 <link rel="stylesheet" href="../css/sections.css">
 <link rel="stylesheet" href="../css/blog.css">
 <link rel="stylesheet" href="../css/support-widget.css">
+<link rel="stylesheet" href="../css/animations.css">
+<link rel="stylesheet" href="../css/scroll-3d.css">
 
 <script type="application/ld+json">
 ${JSON.stringify(articleSchema, null, 2)}
@@ -219,6 +221,7 @@ ${sourcesHtml}
 </section>
 
 <script src="../js/main.js"></script>
+<script src="../js/scroll-3d.js" defer></script>
 <script src="../js/faq-accordion.js"></script>
 <script src="../js/support-widget.js"></script>
 </body>

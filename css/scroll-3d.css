@@ -1,0 +1,112 @@
+/* ==========================================================================
+   CINTEXA — 3D SCROLL SYSTEM
+   Depth-based scroll reveals, mouse/scroll tilt cards, parallax layers,
+   and a scroll progress indicator. Layers on top of animations.css /
+   base.css without touching their existing rules. Fully respects
+   prefers-reduced-motion via the html.reduce-motion escape hatch that
+   js/scroll-3d.js applies at runtime.
+   ========================================================================== */
+
+/* ---- Global perspective context ---- */
+.section,
+.hero {
+  perspective: 1400px;
+}
+
+/* ---- Upgrade [data-reveal] to a 3D depth-rise instead of a flat slide ---- */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(36px) translateZ(-80px) rotateX(8deg);
+  transform-origin: center bottom;
+  transition:
+    opacity var(--dur-slow, 0.6s) var(--ease-out, ease),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+html.js [data-reveal="right"] {
+  transform: translateX(36px) translateZ(-80px) rotateY(-10deg);
+}
+html.js [data-reveal="scale"] {
+  transform: scale(0.9) translateZ(-120px) rotateX(6deg);
+}
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- 3D tilt cards (mouse-follow on desktop, scroll-driven on touch) ---- */
+[data-tilt] {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+  will-change: transform;
+}
+[data-tilt]:hover,
+[data-tilt].tilt-active {
+  box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.35);
+}
+[data-tilt] [data-tilt-layer] {
+  transform: translateZ(24px);
+  transition: transform 0.15s ease-out;
+}
+
+/* ---- Parallax depth layers (hero visuals, floating badges) ---- */
+[data-parallax] {
+  will-change: transform;
+}
+
+/* ---- Scroll progress bar ---- */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent, #2563EB), var(--accent-2, #7C3AED));
+  z-index: 9999;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ---- Section depth-shift wrapper (subtle push-back on scroll-out) ---- */
+[data-depth] {
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease-out, filter 0.4s ease-out;
+}
+[data-depth].depth-recede {
+  transform: translateZ(-40px) scale(0.98);
+  filter: brightness(0.94);
+}
+
+/* ---- Number/stat count-up 3D pop ---- */
+[data-count] {
+  display: inline-block;
+}
+[data-count].count-pop {
+  animation: count-pop-3d 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes count-pop-3d {
+  0%   { transform: translateZ(-30px) scale(0.85); opacity: 0.4; }
+  100% { transform: translateZ(0) scale(1); opacity: 1; }
+}
+
+/* ---- Reduced motion: flatten everything instantly ---- */
+html.reduce-motion [data-reveal],
+html.reduce-motion [data-tilt],
+html.reduce-motion [data-parallax],
+html.reduce-motion [data-depth] {
+  transform: none !important;
+  transition: opacity 0.2s ease !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+html.reduce-motion #scroll-progress {
+  display: none;
+}
+
+/* ---- No-JS fallback ---- */
+html.no-js [data-reveal],
+html.no-js [data-tilt],
+html.no-js [data-depth] {
+  transform: none;
+  opacity: 1;
+}
