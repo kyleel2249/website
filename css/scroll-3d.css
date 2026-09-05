@@ -110,3 +110,140 @@ html.no-js [data-depth] {
   transform: none;
   opacity: 1;
 }
+
+/* ==========================================================================
+   RESPONSIVE TUNING
+   3D effects that read as "premium" on a large screen read as noisy on a
+   small one. Tablet/mobile get flatter, faster, lighter-weight versions;
+   the JS layer (scroll-3d.js) also caps tilt angle and disables parallax
+   translation below 640px so nothing fights the touch scroll.
+   ========================================================================== */
+@media (max-width: 900px) {
+  html.js [data-reveal] {
+    transform: translateY(20px) translateZ(-30px) rotateX(4deg);
+  }
+  [data-tilt] {
+    transition: transform 0.1s ease-out, box-shadow 0.25s ease;
+  }
+}
+
+@media (max-width: 640px) {
+  .section,
+  .hero {
+    perspective: 900px;
+  }
+  html.js [data-reveal],
+  html.js [data-reveal="right"],
+  html.js [data-reveal="scale"] {
+    transform: translateY(14px);
+  }
+  [data-parallax] {
+    transform: none !important;
+  }
+  [data-depth].depth-recede {
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (hover: none) {
+  /* Touch devices: no mouse-follow tilt; use the tap-triggered class instead */
+  [data-tilt]:hover {
+    box-shadow: none;
+  }
+  [data-tilt].tilt-tap {
+    transform: perspective(900px) rotateX(4deg) rotateY(-4deg) translateZ(6px) scale(1.015);
+    box-shadow: 0 20px 40px -18px rgba(15, 23, 42, 0.3);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  }
+}
+
+/* ==========================================================================
+   MAGNETIC BUTTONS
+   Primary CTAs subtly pull toward the cursor within a small radius.
+   ========================================================================== */
+[data-magnetic] {
+  position: relative;
+  display: inline-flex;
+  transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform;
+}
+[data-magnetic]:active {
+  transition: transform 0.08s ease;
+}
+
+/* ==========================================================================
+   CURSOR SPOTLIGHT
+   A soft radial glow that follows the pointer across the hero, desktop only.
+   ========================================================================== */
+.hero[data-spotlight] {
+  position: relative;
+  isolation: isolate;
+}
+.hero[data-spotlight]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    480px circle at var(--spot-x, 50%) var(--spot-y, 30%),
+    rgba(37, 99, 235, 0.14),
+    transparent 70%
+  );
+}
+.hero[data-spotlight].spotlight-active::before {
+  opacity: 1;
+}
+@media (hover: none) {
+  .hero[data-spotlight]::before {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   BACK TO TOP — 3D rotate-in control
+   ========================================================================== */
+#back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--accent, #2563EB), var(--accent-2, #7C3AED));
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  opacity: 0;
+  transform: translateY(30px) rotateX(-90deg) scale(0.6);
+  transform-origin: center bottom;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 24px -10px rgba(37, 99, 235, 0.5);
+}
+#back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotateX(0) scale(1);
+  pointer-events: auto;
+}
+#back-to-top:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 16px 32px -12px rgba(37, 99, 235, 0.6);
+}
+@media (max-width: 640px) {
+  #back-to-top {
+    right: 14px;
+    bottom: 14px;
+    width: 40px;
+    height: 40px;
+  }
+}

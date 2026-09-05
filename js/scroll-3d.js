@@ -61,12 +61,28 @@
   }
 
   /* ---------------------------------------------------------------
-     2. Mouse-follow 3D tilt cards
+     2. Mouse-follow 3D tilt cards (desktop) / tap-tilt (touch)
   --------------------------------------------------------------- */
   function initTiltCards() {
     var cards = document.querySelectorAll('[data-tilt]');
     if (!cards.length) return;
-    var MAX_TILT = 10; // degrees
+
+    var isTouch = window.matchMedia('(hover: none)').matches;
+    var isSmall = window.matchMedia('(max-width: 640px)').matches;
+    var MAX_TILT = isSmall ? 5 : (isTouch ? 6 : 10); // degrees, capped down for small/touch screens
+
+    if (isTouch) {
+      // Touch devices: brief 3D "settle" tilt on tap instead of a mouse follow
+      cards.forEach(function (card) {
+        card.addEventListener('touchstart', function () {
+          card.classList.add('tilt-tap');
+        }, { passive: true });
+        card.addEventListener('touchend', function () {
+          window.setTimeout(function () { card.classList.remove('tilt-tap'); }, 400);
+        }, { passive: true });
+      });
+      return;
+    }
 
     cards.forEach(function (card) {
       var frame = null;
@@ -100,6 +116,86 @@
       card.addEventListener('pointerenter', onEnter);
       card.addEventListener('pointerleave', onLeave);
     });
+  }
+
+  /* ---------------------------------------------------------------
+     2b. Magnetic buttons — CTAs pull slightly toward the cursor
+  --------------------------------------------------------------- */
+  function initMagneticButtons() {
+    if (window.matchMedia('(hover: none)').matches) return; // desktop only
+    var buttons = document.querySelectorAll('[data-magnetic]');
+    if (!buttons.length) return;
+    var RADIUS = 60; // px of pull travel
+    var STRENGTH = 0.35;
+
+    buttons.forEach(function (btn) {
+      function onMove(e) {
+        var rect = btn.getBoundingClientRect();
+        var x = e.clientX - (rect.left + rect.width / 2);
+        var y = e.clientY - (rect.top + rect.height / 2);
+        var dx = Math.max(-RADIUS, Math.min(RADIUS, x)) * STRENGTH;
+        var dy = Math.max(-RADIUS, Math.min(RADIUS, y)) * STRENGTH;
+        btn.style.transform = 'translate(' + dx.toFixed(1) + 'px, ' + dy.toFixed(1) + 'px)';
+      }
+      function onLeave() {
+        btn.style.transform = '';
+      }
+      btn.addEventListener('pointermove', onMove);
+      btn.addEventListener('pointerleave', onLeave);
+    });
+  }
+
+  /* ---------------------------------------------------------------
+     2c. Cursor spotlight on the hero (desktop only)
+  --------------------------------------------------------------- */
+  function initSpotlight() {
+    if (window.matchMedia('(hover: none)').matches) return;
+    var hero = document.querySelector('.hero[data-spotlight]');
+    if (!hero) return;
+    var frame = null;
+
+    hero.addEventListener('pointermove', function (e) {
+      var rect = hero.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width) * 100;
+      var y = ((e.clientY - rect.top) / rect.height) * 100;
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(function () {
+        hero.style.setProperty('--spot-x', x.toFixed(1) + '%');
+        hero.style.setProperty('--spot-y', y.toFixed(1) + '%');
+        hero.classList.add('spotlight-active');
+      });
+    });
+    hero.addEventListener('pointerleave', function () {
+      hero.classList.remove('spotlight-active');
+    });
+  }
+
+  /* ---------------------------------------------------------------
+     2d. Back to top — 3D rotate-in control
+  --------------------------------------------------------------- */
+  function initBackToTop() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'back-to-top';
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Back to top');
+      btn.innerHTML = '&uarr;';
+      document.body.appendChild(btn);
+    }
+    var ticking = false;
+    function update() {
+      var show = (document.documentElement.scrollTop || document.body.scrollTop) > 480;
+      btn.classList.toggle('is-visible', show);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    });
+    update();
   }
 
   /* ---------------------------------------------------------------
@@ -177,6 +273,9 @@
     initParallax();
     initDepthRecede();
     initCountPop();
+    initMagneticButtons();
+    initSpotlight();
+    initBackToTop();
   }
 
   if (document.readyState === 'loading') {
