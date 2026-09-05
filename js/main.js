@@ -177,6 +177,7 @@
         if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
         showStatus(`Thanks, ${name.split(' ')[0]} — your message has been sent. We'll reply within one business day.`, 'success');
         contactForm.reset();
+        window.dispatchEvent(new CustomEvent('cintexa:form-success'));
       } catch (err) {
         console.error('Contact form error:', err);
         showStatus("We couldn't send your message right now. Please email info@cintexa.com directly.", 'error');
