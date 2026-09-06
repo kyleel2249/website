@@ -61,7 +61,7 @@ html.js [data-reveal].is-visible {
   left: 0;
   height: 3px;
   width: 0%;
-  background: linear-gradient(90deg, var(--accent, #2563EB), var(--accent-2, #7C3AED));
+  background: linear-gradient(90deg, var(--blue, #2563EB), var(--purple, #7C3AED));
   z-index: 9999;
   transition: width 0.1s linear;
   pointer-events: none;
@@ -214,7 +214,7 @@ html.no-js [data-depth] {
   height: 46px;
   border-radius: 50%;
   border: none;
-  background: linear-gradient(135deg, var(--accent, #2563EB), var(--accent-2, #7C3AED));
+  background: linear-gradient(135deg, var(--blue, #2563EB), var(--purple, #7C3AED));
   color: #fff;
   font-size: 18px;
   line-height: 1;
@@ -290,7 +290,7 @@ html.reduce-motion .hero-mesh {
   height: 2px;
   width: 0;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--accent, #2563EB), var(--accent-2, #7C3AED));
+  background: linear-gradient(90deg, var(--blue, #2563EB), var(--purple, #7C3AED));
   transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1), width 0.35s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.2s ease;
   opacity: 0;
   will-change: transform, width;
@@ -343,4 +343,87 @@ html.reduce-motion [data-draw] polyline {
 }
 html.reduce-motion #hero-particles {
   display: none;
+}
+
+/* ==========================================================================
+   CINTEXA SYSTEM CORE — signature connected-network visualization
+   ========================================================================== */
+.system-core-stage {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  height: 440px;
+  margin: var(--space-7, 3rem) auto 0;
+  border-radius: var(--radius-lg, 20px);
+  background: radial-gradient(circle at 50% 45%, rgba(37, 99, 235, 0.07), transparent 70%);
+  border: 1px solid var(--border, #E2E8F0);
+  overflow: hidden;
+}
+#system-core-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.system-core-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--blue, #2563EB);
+  pointer-events: none;
+  text-shadow: 0 0 18px rgba(37, 99, 235, 0.35);
+}
+.system-core-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-9999px, -9999px);
+  background: rgba(15, 23, 42, 0.92);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 5;
+}
+.system-core-tooltip.is-visible {
+  opacity: 1;
+}
+@media (max-width: 640px) {
+  .system-core-stage { height: 320px; }
+}
+
+/* Semantic fallback list — always present for SEO/no-JS/accessibility,
+   shown as a compact chip grid rather than a hidden block. */
+.system-core-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin: var(--space-6, 2rem) 0 0;
+  padding: 0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.system-core-list li {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #475569);
+  background: var(--surface-raised, #F1F5F9);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.system-core-list strong {
+  color: var(--text-primary, #0F172A);
 }
