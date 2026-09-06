@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <script>document.documentElement.className = 'js';</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard · Cintexa Member Portal</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="../css/portal.css">
+</head>
+<body class="portal-app">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="portal-topbar" id="portal-topbar">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="/portal/dashboard.html" class="brand">
+      <img src="/assets/logo.svg" alt="" width="28" height="28">
+      <span>Cintexa</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="notif-btn" aria-label="Notifications">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+        <span class="badge" id="notif-count" hidden>0</span>
+      </button>
+      <button class="avatar-btn" id="avatar-btn" aria-label="Account menu">
+        <span id="avatar-initials">—</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="portal-layout">
+    <aside class="portal-sidebar" id="portal-sidebar">
+      <div class="sidebar-brand">
+        <img src="/assets/logo.svg" alt="" width="32" height="32">
+        <span>Cintexa</span>
+      </div>
+      <nav class="sidebar-nav" aria-label="Portal">
+        <a href="/portal/dashboard.html" class="nav-item is-active">Dashboard</a>
+        <a href="/portal/contributions.html" class="nav-item">Contributions</a>
+        <a href="/portal/leaderboard.html" class="nav-item">Leaderboard</a>
+        <a href="/portal/profile.html" class="nav-item">Profile</a>
+        <a href="/portal/settings.html" class="nav-item">Settings</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="nav-item sign-out" id="sign-out-btn">Sign Out</button>
+      </div>
+    </aside>
+
+    <main class="portal-main" id="main">
+      <div class="dashboard-header">
+        <div>
+          <p class="greeting" id="greeting">Good day</p>
+          <h1 id="user-name">Loading…</h1>
+        </div>
+        <div class="header-meta">
+          <span class="period-label" id="period-label">—</span>
+          <button class="btn btn-ghost btn-sm" id="refresh-btn">Refresh</button>
+        </div>
+      </div>
+
+      <div id="dashboard-loading" class="dashboard-loading">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+
+      <div id="dashboard-error" class="dashboard-error" hidden>
+        <p>Your contribution data could not be loaded right now.</p>
+        <button class="btn btn-primary" id="retry-btn">Try Again</button>
+      </div>
+
+      <div id="dashboard-content" hidden>
+        <div class="kpi-row">
+          <div class="kpi-card" data-tilt>
+            <div class="kpi-label">Total Contributed</div>
+            <div class="kpi-value" id="kpi-total">—</div>
+            <div class="kpi-meta" id="kpi-total-meta">— contributions</div>
+          </div>
+          <div class="kpi-card" data-tilt>
+            <div class="kpi-label">This Month</div>
+            <div class="kpi-value" id="kpi-month">—</div>
+            <div class="kpi-meta" id="kpi-month-meta">vs previous</div>
+          </div>
+          <div class="kpi-card" data-tilt>
+            <div class="kpi-label">Progress</div>
+            <div class="kpi-value" id="kpi-progress">—</div>
+            <div class="kpi-meta" id="kpi-progress-meta">of monthly target</div>
+          </div>
+          <div class="kpi-card" data-tilt>
+            <div class="kpi-label">Your Rank</div>
+            <div class="kpi-value" id="kpi-rank">—</div>
+            <div class="kpi-meta" id="kpi-rank-meta">this month</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="panel contribution-core-panel">
+            <h2 class="panel-title">Contribution Progress</h2>
+            <div class="contribution-core-stage" id="contribution-core-stage">
+              <canvas id="contribution-core-canvas"></canvas>
+              <div class="core-center-label">
+                <div class="core-pct" id="core-pct">0%</div>
+                <div class="core-sub">of target</div>
+              </div>
+            </div>
+            <div class="progress-stats">
+              <div>
+                <span class="stat-label">Target</span>
+                <span class="stat-value" id="stat-target">—</span>
+              </div>
+              <div>
+                <span class="stat-label">Contributed</span>
+                <span class="stat-value" id="stat-contributed">—</span>
+              </div>
+              <div>
+                <span class="stat-label">Remaining</span>
+                <span class="stat-value" id="stat-remaining">—</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h2 class="panel-title">Recent Activity</h2>
+            <div id="recent-list" class="recent-list"></div>
+            <a href="/portal/contributions.html" class="panel-link">View all contributions →</a>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Leaderboard · This Month</h2>
+            <a href="/portal/leaderboard.html" class="panel-link">Full leaderboard →</a>
+          </div>
+          <div id="leaderboard-snapshot" class="leaderboard-snapshot"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/auth-service.js"></script>
+  <script src="../js/contribution-service.js"></script>
+  <script src="../js/contribution-core-3d.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>
