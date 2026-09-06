@@ -421,6 +421,14 @@
 
   <!-- ============ INVENTORY MANAGEMENT ============ -->
   <section data-depth class="section inventory-section" id="inventory">
+    <div class="container">
+      <div class="flow-diagram" data-flow="inventory" data-reveal aria-hidden="true">
+        <canvas></canvas>
+        <div class="flow-diagram-labels">
+          <span>Warehouse</span><span>Inventory</span><span>Order</span><span>Customer</span>
+        </div>
+      </div>
+    </div>
     <div class="container inventory-layout">
       <!-- Copy -->
       <div class="inventory-copy" data-reveal>
@@ -559,6 +567,13 @@
         <p>Off-the-shelf software makes you adapt to it. Cintexa builds software that adapts to you — faster to deploy, cheaper to run, and built to scale.</p>
       </div>
 
+      <div class="flow-diagram" data-flow="software" data-reveal aria-hidden="true">
+        <canvas></canvas>
+        <div class="flow-diagram-labels">
+          <span>User</span><span>Application</span><span>API</span><span>Database</span><span>Intelligence</span>
+        </div>
+      </div>
+
       <div class="section-image-showcase" data-reveal>
         <img src="assets/growing-a-business.jpg" alt="Cintexa builds websites and apps that grow your business — Modern. Fast. Responsive." loading="lazy" width="780" height="780">
       </div>
@@ -615,6 +630,13 @@
           <span class="eyebrow">Cloud Infrastructure</span>
           <h2>Infrastructure that scales with your business — not against it</h2>
           <p>Cintexa provisions and manages cloud infrastructure on Firebase and Cloudflare — so you get enterprise-grade reliability without the enterprise-grade complexity.</p>
+        </div>
+
+        <div class="flow-diagram" data-flow="cloud" data-reveal aria-hidden="true">
+          <canvas></canvas>
+          <div class="flow-diagram-labels">
+            <span>User</span><span>Edge</span><span>Application</span><span>API</span><span>Database</span>
+          </div>
         </div>
 
         <div class="cloud-feature">
@@ -688,6 +710,13 @@
         <span class="eyebrow">Cintexa Intelligence</span>
         <h2>Your business operating on smarter decisions, automatically</h2>
         <p>Cintexa Intelligence is a built-in decision layer across all your business platforms — surfacing the right insight at the right moment so your team acts faster and smarter.</p>
+
+        <div class="flow-diagram" data-flow="intelligence" data-reveal aria-hidden="true">
+          <canvas></canvas>
+          <div class="flow-diagram-labels">
+            <span>Data</span><span>Processing</span><span>Pattern</span><span>Insight</span><span>Action</span>
+          </div>
+        </div>
 
         <div class="intel-capabilities">
           <div class="intel-cap">
@@ -1358,6 +1387,7 @@
 <script src="js/main.js"></script>
 <script src="js/scroll-3d.js" defer></script>
 <script src="js/system-core-3d.js" defer></script>
+<script src="js/flow-diagrams.js" defer></script>
 <script src="js/reviews.js"></script>
 <script src="js/diagnostics.js"></script>
 <script src="js/support-widget.js"></script>

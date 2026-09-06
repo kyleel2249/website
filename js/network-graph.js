@@ -15,12 +15,12 @@
 
   const NODES = [
     { id: 'core', label: 'CINTEXA CORE', href: '#hero', r: 26, primary: true },
-    { id: 'software', label: 'Software', href: '#services', r: 15 },
-    { id: 'cloud', label: 'Cloud', href: '#services', r: 15 },
-    { id: 'api', label: 'API Layer', href: '#developer-portal', r: 15 },
+    { id: 'software', label: 'Software', href: '#software', r: 15 },
+    { id: 'cloud', label: 'Cloud', href: '#cloud', r: 15 },
+    { id: 'api', label: 'API Layer', href: '#software', r: 15 },
     { id: 'web', label: 'Web Systems', href: '#services', r: 15 },
     { id: 'data', label: 'Diagnostics', href: '#diagnostics', r: 13 },
-    { id: 'edge', label: 'Edge Network', href: '#roadmap', r: 13 },
+    { id: 'edge', label: 'Edge Network', href: '#cloud', r: 13 },
   ];
 
   const EDGES = [

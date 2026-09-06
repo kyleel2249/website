@@ -427,3 +427,38 @@ html.reduce-motion #hero-particles {
 .system-core-list strong {
   color: var(--text-primary, #0F172A);
 }
+
+/* ==========================================================================
+   FLOW DIAGRAMS — compact animated data-flow strips
+   (Inventory: Warehouse → Inventory → Order → Customer)
+   (Software: User → Application → API → Database → Intelligence)
+   ========================================================================== */
+.flow-diagram {
+  position: relative;
+  width: 100%;
+  height: 96px;
+  margin: 0 0 var(--space-6, 2rem);
+}
+.flow-diagram canvas {
+  display: block;
+  width: 100%;
+  height: 64px;
+}
+.flow-diagram-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 0 4px;
+}
+.flow-diagram-labels span {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary, #64748B);
+  text-align: center;
+  flex: 1;
+}
+@media (max-width: 640px) {
+  .flow-diagram-labels span { font-size: 0.6rem; }
+}
