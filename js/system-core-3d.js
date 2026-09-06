@@ -222,12 +222,20 @@
   --------------------------------------------------------------- */
   function loadThree(callback) {
     if (window.THREE) { callback(); return; }
+    setInitializingLabel(true);
     var script = document.createElement('script');
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js';
     script.async = true;
-    script.onload = callback;
-    script.onerror = init2D; // network hiccup -> fall back rather than break
+    script.onload = function () { setInitializingLabel(false); callback(); };
+    script.onerror = function () { setInitializingLabel(false); init2D(); }; // network hiccup -> fall back rather than break
     document.head.appendChild(script);
+  }
+
+  function setInitializingLabel(loading) {
+    var label = document.getElementById('system-core-label');
+    if (!label) return;
+    label.textContent = loading ? 'CONNECTED SYSTEM INITIALIZING…' : 'CINTEXA';
+    label.classList.toggle('is-loading', loading);
   }
 
   function init3D() {

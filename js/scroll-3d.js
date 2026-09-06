@@ -19,6 +19,21 @@
 (function () {
   'use strict';
 
+  /* ---- Central motion config ----
+     Single source of truth for tunable motion values, so nothing is
+     hardcoded across the individual init functions below. Mirrors the
+     --tilt-max-*, --motion-* tokens defined in css/scroll-3d.css. */
+  var motionConfig = {
+    tiltMaxDesktop: 10,     // degrees
+    tiltMaxTouch: 6,        // degrees
+    tiltMaxSmall: 5,        // degrees, <=640px
+    magneticRadius: 60,     // px
+    magneticStrength: 0.35,
+    particleDensityDivisor: 26000, // lower = more particles per px^2
+    parallaxDefaultSpeed: 0.15,
+    backToTopThreshold: 480 // px scrolled before the button appears
+  };
+
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function applyReducedMotionClass() {
@@ -69,7 +84,7 @@
 
     var isTouch = window.matchMedia('(hover: none)').matches;
     var isSmall = window.matchMedia('(max-width: 640px)').matches;
-    var MAX_TILT = isSmall ? 5 : (isTouch ? 6 : 10); // degrees, capped down for small/touch screens
+    var MAX_TILT = isSmall ? motionConfig.tiltMaxSmall : (isTouch ? motionConfig.tiltMaxTouch : motionConfig.tiltMaxDesktop);
 
     if (isTouch) {
       // Touch devices: brief 3D "settle" tilt on tap instead of a mouse follow
@@ -125,8 +140,8 @@
     if (window.matchMedia('(hover: none)').matches) return; // desktop only
     var buttons = document.querySelectorAll('[data-magnetic]');
     if (!buttons.length) return;
-    var RADIUS = 60; // px of pull travel
-    var STRENGTH = 0.35;
+    var RADIUS = motionConfig.magneticRadius;
+    var STRENGTH = motionConfig.magneticStrength;
 
     buttons.forEach(function (btn) {
       function onMove(e) {
@@ -185,7 +200,7 @@
     }
     var ticking = false;
     function update() {
-      var show = (document.documentElement.scrollTop || document.body.scrollTop) > 480;
+      var show = (document.documentElement.scrollTop || document.body.scrollTop) > motionConfig.backToTopThreshold;
       btn.classList.toggle('is-visible', show);
       ticking = false;
     }
@@ -210,7 +225,7 @@
     function update() {
       var vh = window.innerHeight;
       layers.forEach(function (el) {
-        var speed = parseFloat(el.getAttribute('data-speed')) || 0.15;
+        var speed = parseFloat(el.getAttribute('data-speed')) || motionConfig.parallaxDefaultSpeed;
         var rect = el.getBoundingClientRect();
         var centerOffset = (rect.top + rect.height / 2) - vh / 2;
         var translateY = centerOffset * speed * -1;
@@ -353,6 +368,7 @@
     if (!canvas) {
       canvas = document.createElement('canvas');
       canvas.id = 'confetti-canvas';
+      canvas.setAttribute('aria-hidden', 'true');
       document.body.appendChild(canvas);
     }
     var ctx = canvas.getContext('2d');
@@ -423,6 +439,7 @@
 
     var canvas = document.createElement('canvas');
     canvas.id = 'hero-particles';
+    canvas.setAttribute('aria-hidden', 'true');
     host.insertBefore(canvas, host.firstChild);
     var ctx = canvas.getContext('2d');
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -438,7 +455,7 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     function makeParticles() {
-      var n = Math.round((w * h) / 26000);
+      var n = Math.round((w * h) / motionConfig.particleDensityDivisor);
       particles = [];
       for (var i = 0; i < n; i++) {
         particles.push({
