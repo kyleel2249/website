@@ -496,3 +496,83 @@ html.reduce-motion .system-core-label.is-loading {
 @media (max-width: 640px) {
   .flow-diagram-labels span { font-size: 0.6rem; }
 }
+
+/* ==========================================================================
+   INTEGRATION HUB — radial API connection visualization
+   ========================================================================== */
+.integration-hub {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 260px;
+  margin: 0 auto var(--space-6, 2rem);
+}
+.integration-hub canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.integration-hub-labels span {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-primary, #0F172A);
+  background: var(--surface, #FFFFFF);
+  border: 1px solid var(--border, #E2E8F0);
+  border-radius: 999px;
+  padding: 4px 9px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .integration-hub { height: 220px; }
+  .integration-hub-labels span { font-size: 0.6rem; padding: 3px 7px; }
+}
+
+/* ==========================================================================
+   CASE STUDY BEFORE/AFTER BARS
+   ========================================================================== */
+.case-study-bar {
+  margin-top: var(--space-4, 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.case-study-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.case-study-bar-row span {
+  width: 48px;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary, #64748B);
+}
+.case-study-bar-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-raised, #F1F5F9);
+  overflow: hidden;
+}
+.case-study-bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  transition: width var(--motion-system, 900ms) var(--ease-out-custom, cubic-bezier(0.16,1,0.3,1));
+}
+.case-study-bar-fill.is-before {
+  background: var(--text-muted, #94A3B8);
+}
+.case-study-bar-fill.is-after {
+  background: linear-gradient(90deg, var(--blue, #2563EB), var(--purple, #7C3AED));
+}
+html.reduce-motion .case-study-bar-fill {
+  transition: none;
+}

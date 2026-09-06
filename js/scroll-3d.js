@@ -487,6 +487,55 @@
     window.addEventListener('resize', function () { size(); makeParticles(); });
     requestAnimationFrame(tick);
   }
+  /* ---------------------------------------------------------------
+     2i. Case study before/after bars — built only from the metric
+     percentage already stated in the markup (no invented numbers).
+     Only applies to "Reduction" metrics, where "before" (100%) vs
+     "after" (100 - stated%) is a meaningful, honest comparison.
+  --------------------------------------------------------------- */
+  function initCaseStudyBars() {
+    var metrics = document.querySelectorAll('.case-study-metric');
+    if (!metrics.length) return;
+
+    metrics.forEach(function (metric) {
+      var numEl = metric.querySelector('.metric-num');
+      var labelEl = metric.querySelector('.metric-label');
+      if (!numEl || !labelEl) return;
+      var match = numEl.textContent.match(/^(\d+(?:\.\d+)?)%$/);
+      var isReduction = /reduction/i.test(labelEl.textContent);
+      if (!match || !isReduction) return; // don't force a bar onto e.g. "2.5×" metrics
+
+      var afterPct = 100 - parseFloat(match[1]);
+      var bar = document.createElement('div');
+      bar.className = 'case-study-bar';
+      bar.innerHTML =
+        '<div class="case-study-bar-row"><span>Before</span><div class="case-study-bar-track"><div class="case-study-bar-fill is-before"></div></div></div>' +
+        '<div class="case-study-bar-row"><span>After</span><div class="case-study-bar-track"><div class="case-study-bar-fill is-after" data-target="' + afterPct + '"></div></div></div>';
+      metric.parentNode.insertBefore(bar, metric.nextSibling);
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.case-study-bar-fill').forEach(function (fill) {
+        fill.style.width = (fill.classList.contains('is-before') ? 100 : fill.getAttribute('data-target')) + '%';
+      });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var fills = entry.target.querySelectorAll('.case-study-bar-fill');
+        fills.forEach(function (fill) {
+          var target = fill.classList.contains('is-before') ? 100 : fill.getAttribute('data-target');
+          requestAnimationFrame(function () { fill.style.width = target + '%'; });
+        });
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.case-study-bar').forEach(function (bar) { io.observe(bar); });
+  }
+
   function init() {
     initProgressBar();
     initTiltCards();
@@ -500,6 +549,7 @@
     initSvgDraw();
     initConfetti();
     initHeroParticles();
+    initCaseStudyBars();
   }
 
   if (document.readyState === 'loading') {
