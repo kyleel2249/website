@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <script>document.documentElement.className = 'js';</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account · Cintexa Member Portal</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="../css/portal.css">
+</head>
+<body class="portal-auth">
+  <div class="auth-shell">
+    <div class="auth-visual" aria-hidden="true">
+      <div class="auth-brand">
+        <img src="/assets/logo.svg" alt="" width="36" height="36">
+        <span>Cintexa</span>
+      </div>
+      <p class="auth-tagline">Join the Cintexa member portal to track your contributions and progress.</p>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-panel-inner">
+        <h1>Create your account</h1>
+        <p class="auth-lede">Start tracking your contribution activity securely.</p>
+        <form id="signup-form" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password" required minlength="8" autocomplete="new-password">
+              <button type="button" class="toggle-password" data-target="password" aria-label="Show password">Show</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm password</label>
+            <div class="password-wrap">
+              <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8" autocomplete="new-password">
+              <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Show password">Show</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="checkbox">
+              <input type="checkbox" id="terms" name="terms" required>
+              <span>I accept the <a href="/terms.html" target="_blank">Terms</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a></span>
+            </label>
+          </div>
+          <div id="auth-error" class="form-error" role="alert" hidden></div>
+          <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Create Account</button>
+        </form>
+        <p class="auth-footer-text">Already have an account? <a href="/portal/sign-in.html">Sign in</a></p>
+        <p class="auth-back"><a href="/">← Back to Cintexa</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/auth-service.js"></script>
+  <script src="../js/portal-auth-ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <script>document.documentElement.className = 'js';</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In · Cintexa Member Portal</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="../css/portal.css">
+</head>
+<body class="portal-auth">
+  <a class="skip-link" href="#auth-form">Skip to form</a>
+
+  <div class="auth-shell">
+    <div class="auth-visual" aria-hidden="true">
+      <div class="auth-core" id="auth-core"></div>
+      <div class="auth-brand">
+        <img src="/assets/logo.svg" alt="" width="36" height="36">
+        <span>Cintexa</span>
+      </div>
+      <p class="auth-tagline">Connected technology systems for modern businesses</p>
+    </div>
+
+    <div class="auth-panel">
+      <div class="auth-panel-inner">
+        <h1>Sign in to your portal</h1>
+        <p class="auth-lede">Access your contribution dashboard, progress, and history.</p>
+
+        <form id="auth-form" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@company.com">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="••••••••">
+              <button type="button" class="toggle-password" aria-label="Show password" data-target="password">Show</button>
+            </div>
+          </div>
+          <div class="form-row">
+            <label class="checkbox">
+              <input type="checkbox" id="remember" name="remember">
+              <span>Remember me</span>
+            </label>
+            <a href="/portal/forgot-password.html" class="link-muted">Forgot password?</a>
+          </div>
+          <div id="auth-error" class="form-error" role="alert" hidden></div>
+          <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Sign In</button>
+        </form>
+
+        <p class="auth-footer-text">
+          Don’t have an account? <a href="/portal/sign-up.html">Create account</a>
+        </p>
+        <p class="auth-back">
+          <a href="/">← Back to Cintexa</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/auth-service.js"></script>
+  <script src="../js/portal-auth-ui.js"></script>
+</body>
+</html>
